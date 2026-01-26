@@ -8,63 +8,63 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Destructed = 0;
-    public const int SelfDestructTimer = 1;
-    public const int View = 2;
-    public const int ViewPath = 3;
-    public const int ViewPrefab = 4;
-    public const int Player = 5;
-    public const int Active = 6;
-    public const int Damage = 7;
-    public const int Id = 8;
-    public const int SpriteRenderer = 9;
-    public const int Transform = 10;
-    public const int WorldPosition = 11;
-    public const int Direction = 12;
-    public const int MovementAvailable = 13;
-    public const int Moving = 14;
-    public const int RotationAlignedAlongDirection = 15;
-    public const int Speed = 16;
+    public const int Active = 0;
+    public const int Damage = 1;
+    public const int Destructed = 2;
+    public const int Id = 3;
+    public const int SelfDestructTimer = 4;
+    public const int SpriteRenderer = 5;
+    public const int Transform = 6;
+    public const int View = 7;
+    public const int ViewPath = 8;
+    public const int ViewPrefab = 9;
+    public const int WorldPosition = 10;
+    public const int Direction = 11;
+    public const int MovementAvailable = 12;
+    public const int Moving = 13;
+    public const int RotationAlignedAlongDirection = 14;
+    public const int Speed = 15;
+    public const int Player = 16;
 
     public const int TotalComponents = 17;
 
     public static readonly string[] componentNames = {
+        "Active",
+        "Damage",
         "Destructed",
+        "Id",
         "SelfDestructTimer",
+        "SpriteRenderer",
+        "Transform",
         "View",
         "ViewPath",
         "ViewPrefab",
-        "Player",
-        "Active",
-        "Damage",
-        "Id",
-        "SpriteRenderer",
-        "Transform",
         "WorldPosition",
         "Direction",
         "MovementAvailable",
         "Moving",
         "RotationAlignedAlongDirection",
-        "Speed"
+        "Speed",
+        "Player"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Code.Common.Destructed),
-        typeof(Code.Common.SelfDestructTimer),
-        typeof(Code.Common.View),
-        typeof(Code.Common.ViewPath),
-        typeof(Code.Common.ViewPrefab),
-        typeof(Code.Game.Features.Player.PlayerComponent),
         typeof(Code.Game.Common.Active),
         typeof(Code.Game.Common.Damage),
+        typeof(Code.Game.Common.Destructed),
         typeof(Code.Game.Common.Id),
+        typeof(Code.Game.Common.SelfDestructTimer),
         typeof(Code.Game.Common.SpriteRendererComponent),
         typeof(Code.Game.Common.TransformComponent),
+        typeof(Code.Game.Common.View),
+        typeof(Code.Game.Common.ViewPath),
+        typeof(Code.Game.Common.ViewPrefab),
         typeof(Code.Game.Common.WorldPosition),
         typeof(Code.Game.Features.Movement.Direction),
         typeof(Code.Game.Features.Movement.MovementAvailable),
         typeof(Code.Game.Features.Movement.Moving),
         typeof(Code.Game.Features.Movement.RotationAlignedAlongDirection),
-        typeof(Code.Game.Features.Movement.Speed)
+        typeof(Code.Game.Features.Movement.Speed),
+        typeof(Code.Game.Features.Player.PlayerComponent)
     };
 }

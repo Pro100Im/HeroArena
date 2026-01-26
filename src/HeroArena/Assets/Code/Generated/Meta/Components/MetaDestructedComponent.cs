@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class MetaEntity {
 
-    static readonly Code.Common.Destructed destructedComponent = new Code.Common.Destructed();
+    static readonly Code.Game.Common.Destructed destructedComponent = new Code.Game.Common.Destructed();
 
     public bool isDestructed {
         get { return HasComponent(MetaComponentsLookup.Destructed); }

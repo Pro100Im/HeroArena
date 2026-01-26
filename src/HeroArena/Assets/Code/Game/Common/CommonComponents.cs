@@ -14,6 +14,11 @@ namespace Code.Game.Common
 
     [Game] public class TransformComponent : IComponent { public Transform Value; }
     [Game] public class SpriteRendererComponent : IComponent { public SpriteRenderer Value; }
-    //[Game] public class DamageTakenAnimatorComponent : IComponent { public IDamageTakenAnimator Value; }
-    //[Game] public class StatusVisualsComponent : IComponent { public IStatusVisuals Value; }
+
+    [Game] public class View : IComponent { public IEntityView Value; }
+    [Game] public class ViewPath : IComponent { public string Value; }
+    [Game] public class ViewPrefab : IComponent { public EntityBehaviour Value; }
+
+    [Game, Meta] public class Destructed : IComponent { }
+    [Game] public class SelfDestructTimer : IComponent { public float Value; }
 }
