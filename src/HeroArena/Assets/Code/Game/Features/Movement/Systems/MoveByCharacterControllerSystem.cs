@@ -3,19 +3,19 @@ using Entitas;
 
 namespace Code.Game.Features.Movement.Systems
 {
-    public class DirectionalDeltaMoveSystem : IExecuteSystem
+    public class MoveByCharacterControllerSystem : IExecuteSystem
     {
         private readonly ITimeService _timeService;
         private readonly IGroup<GameEntity> _movers;
 
-        public DirectionalDeltaMoveSystem(GameContext gameContext, ITimeService timeService)
+        public MoveByCharacterControllerSystem(GameContext gameContext, ITimeService timeService)
         {
             _timeService = timeService;
 
             _movers = gameContext
                 .GetGroup(GameMatcher
                 .AllOf(
-                    GameMatcher.WorldPosition, 
+                    GameMatcher.CharacterController, 
                     GameMatcher.Speed, 
                     GameMatcher.Direction, 
                     GameMatcher.Moving,
@@ -27,7 +27,7 @@ namespace Code.Game.Features.Movement.Systems
         {
             foreach(var mover in _movers) 
             {
-                mover.ReplaceWorldPosition(mover.worldPosition.Value + mover.direction.Value * mover.speed.Value * _timeService.DeltaTime);
+                mover.characterController.Value.SimpleMove(mover.direction.Value * mover.speed.Value);
             }
         }
     }

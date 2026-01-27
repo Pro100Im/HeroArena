@@ -17,10 +17,10 @@ namespace Code.Game.Features.Player.Factory
         {
             var entity = CreateEntity.Empty();
             entity.AddId(_identifiers.Next());
-            entity.AddWorldPosition(at);
             entity.AddDirection(Vector2.zero);
             entity.AddSpeed(2);
             entity.AddViewPath("Game/Player/Player");
+            entity.isPlayerSpawnRequsted = true;
             entity.isPlayer = true;
             entity.isMovementAvailable = true;
 

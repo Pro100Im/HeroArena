@@ -13,6 +13,7 @@ namespace Code.Game.Common
     [Game] public class Active : IComponent { }
 
     [Game] public class TransformComponent : IComponent { public Transform Value; }
+    [Game] public class CharacterControllerComponent : IComponent { public CharacterController Value; }
     [Game] public class SpriteRendererComponent : IComponent { public SpriteRenderer Value; }
 
     [Game] public class View : IComponent { public IEntityView Value; }
