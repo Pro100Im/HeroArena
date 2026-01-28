@@ -12,31 +12,31 @@ namespace Code.Infrastructure.DI
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            BindSystemFactory(builder);
-            BindUIFactories(builder);
-            BindStateFactory(builder);
-            BindGameFactories(builder);
+            //BindSystemFactory(builder);
+            //BindUIFactories(builder);
+            //BindStateFactory(builder);
+            //BindGameFactories(builder);
         }
 
-        private void BindSystemFactory(IContainerBuilder builder)
-        {
-            builder.Register<ISystemFactory, SystemFactory>(Lifetime.Singleton);
-        }
+        //private void BindSystemFactory(IContainerBuilder builder)
+        //{
+        //    builder.Register<ISystemFactory, SystemFactory>(Lifetime.Singleton);
+        //}
 
-        private void BindUIFactories(IContainerBuilder builder)
-        {
-            builder.Register<IWindowFactory, WindowFactory>(Lifetime.Singleton);
-        }
+        //private void BindUIFactories(IContainerBuilder builder)
+        //{
+        //    builder.Register<IWindowFactory, WindowFactory>(Lifetime.Singleton);
+        //}
 
-        private void BindStateFactory(IContainerBuilder builder)
-        {
-            builder.Register<IStateFactory, StateFactory>(Lifetime.Singleton);
-        }
+        //private void BindStateFactory(IContainerBuilder builder)
+        //{
+        //    builder.Register<IStateFactory, StateFactory>(Lifetime.Singleton);
+        //}
 
-        private void BindGameFactories(IContainerBuilder builder)
-        {
-            builder.Register<IEntityViewFactory, EntityViewFactory>(Lifetime.Singleton);
-            builder.Register<IPlayerFactory, PlayerFactory>(Lifetime.Singleton);
-        }
+        //private void BindGameFactories(IContainerBuilder builder)
+        //{
+        //    builder.Register<IEntityViewFactory, EntityViewFactory>(Lifetime.Singleton);
+        //    builder.Register<IPlayerFactory, PlayerFactory>(Lifetime.Singleton);
+        //}
     }
 }

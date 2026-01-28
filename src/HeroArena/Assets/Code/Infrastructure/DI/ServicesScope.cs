@@ -14,28 +14,28 @@ namespace Code.Infrastructure.DI
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            BindInputService(builder);
-            BindCommonServices(builder);
-            BindAssetManagementServices(builder);
+            //BindInputService(builder);
+            //BindCommonServices(builder);
+            //BindAssetManagementServices(builder);
         }
 
-        private void BindInputService(IContainerBuilder builder)
-        {
-            builder.Register<IInputService, InputService>(Lifetime.Singleton);
-        }
+        //private void BindInputService(IContainerBuilder builder)
+        //{
+        //    builder.Register<IInputService, InputService>(Lifetime.Singleton);
+        //}
 
-        private void BindCommonServices(IContainerBuilder builder)
-        {
-            builder.Register<ITimeService, UnityTimeService>(Lifetime.Singleton);
-            builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
-            builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
-            builder.Register<IWindowService, WindowService>(Lifetime.Singleton);
-            builder.Register<IIdentifierService, IdentifierService>(Lifetime.Singleton);
-        }
+        //private void BindCommonServices(IContainerBuilder builder)
+        //{
+        //    builder.Register<ITimeService, UnityTimeService>(Lifetime.Singleton);
+        //    builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
+        //    builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
+        //    builder.Register<IWindowService, WindowService>(Lifetime.Singleton);
+        //    builder.Register<IIdentifierService, IdentifierService>(Lifetime.Singleton);
+        //}
 
-        private void BindAssetManagementServices(IContainerBuilder builder)
-        {
-            builder.Register<IAssetProvider, AssetProvider>(Lifetime.Singleton);
-        }
+        //private void BindAssetManagementServices(IContainerBuilder builder)
+        //{
+        //    builder.Register<IAssetProvider, AssetProvider>(Lifetime.Singleton);
+        //}
     }
 }

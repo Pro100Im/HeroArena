@@ -18,6 +18,7 @@ namespace Code.Infrastructure.States.GameStates
 
         public override void Enter()
         {
+            Debug.LogWarning("ENTER????");
             _staticDataService.LoadAll();
 
             _stateMachine.Enter<LoadingHomeScreenState>();
