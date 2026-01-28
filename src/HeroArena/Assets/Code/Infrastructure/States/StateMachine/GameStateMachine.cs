@@ -1,10 +1,9 @@
 ﻿using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
-using Zenject;
 
 namespace Code.Infrastructure.States.StateMachine
 {
-    public class GameStateMachine : IGameStateMachine, ITickable
+    public class GameStateMachine : IGameStateMachine
     {
         private IExitableState _activeState;
         private readonly IStateFactory _stateFactory;
@@ -14,7 +13,7 @@ namespace Code.Infrastructure.States.StateMachine
             _stateFactory = stateFactory;
         }
 
-        public void Tick()
+        public void Update()
         {
             if(_activeState is IUpdateable updateableState)
                 updateableState.Update();

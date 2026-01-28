@@ -1,29 +1,27 @@
 using Code.Infrastructure.AssetManagement;
 using UnityEngine;
-using Zenject;
+using VContainer;
 
 namespace Code.Infrastructure.View.Factory
 {
     public class EntityViewFactory : IEntityViewFactory
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly IInstantiator _instantiator;
+        private readonly IObjectResolver _objectResolver;
         private readonly Vector3 _farAway = new(-999, 999, 0);
 
-        public EntityViewFactory(IAssetProvider assetProvider, IInstantiator instantiator)
+        public EntityViewFactory(IAssetProvider assetProvider, IObjectResolver objectResolver)
         {
             _assetProvider = assetProvider;
-            _instantiator = instantiator;
+            _objectResolver = objectResolver;
         }
 
         public EntityBehaviour CreateViewForEntity(GameEntity entity)
         {
-            EntityBehaviour viewPrefab = _assetProvider.LoadAsset<EntityBehaviour>(entity.viewPath.Value);
-            EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(
-              viewPrefab,
-              position: _farAway,
-              Quaternion.identity,
-              parentTransform: null);
+            var viewPrefab = _assetProvider.LoadAsset<EntityBehaviour>(entity.viewPath.Value);
+            var view = GameObject.Instantiate<EntityBehaviour>(viewPrefab, _farAway, Quaternion.identity, null);
+
+            _objectResolver.Inject(view);
 
             view.SetEntity(entity);
 
@@ -32,11 +30,9 @@ namespace Code.Infrastructure.View.Factory
 
         public EntityBehaviour CreateViewForEntityFromPrefab(GameEntity entity)
         {
-            EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(
-              entity.viewPrefab.Value,
-              position: _farAway,
-              Quaternion.identity,
-              parentTransform: null);
+            var view = GameObject.Instantiate<EntityBehaviour>(entity.viewPrefab.Value, _farAway, Quaternion.identity, null);
+
+            _objectResolver.Inject(view);
 
             view.SetEntity(entity);
 

@@ -1,19 +1,21 @@
 ﻿using Entitas;
-using Zenject;
+using VContainer;
 
 namespace Code.Infrastructure.Systems
 {
     public class SystemFactory : ISystemFactory
     {
-        private readonly DiContainer _container;
+        private readonly IObjectResolver _objectResolver;
 
-        public SystemFactory(DiContainer container) =>
-          _container = container;
+        public SystemFactory(IObjectResolver objectResolver)
+        {
+            _objectResolver = objectResolver;
+        }
 
         public T Create<T>() where T : ISystem =>
-          _container.Instantiate<T>();
+          _objectResolver.Resolve<T>();
 
         public T Create<T>(params object[] args) where T : ISystem =>
-          _container.Instantiate<T>(args);
+          _objectResolver.Resolve<T>(args);
     }
 }

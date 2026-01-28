@@ -1,20 +1,20 @@
 using Code.Infrastructure.States.StateInfrastructure;
-using Zenject;
+using VContainer;
 
 namespace Code.Infrastructure.States.Factory
 {
     public class StateFactory : IStateFactory
     {
-        private readonly DiContainer _container;
+        private readonly IObjectResolver _objectResolver;
 
-        public StateFactory(DiContainer container)
+        public StateFactory(IObjectResolver objectResolver)
         {
-            _container = container;
+            _objectResolver = objectResolver;
         }
 
         public T GetState<T>() where T : class, IExitableState
         {
-            return _container.Resolve<T>();
+            return _objectResolver.Resolve<T>();
         }
     }
 }
