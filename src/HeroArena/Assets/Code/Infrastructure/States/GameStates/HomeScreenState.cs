@@ -4,6 +4,11 @@ namespace Code.Infrastructure.States.GameStates
 {
     public class HomeScreenState : IState, IUpdateable
     {
+        public HomeScreenState() 
+        {
+
+        }
+
         //private readonly ISystemFactory _systems;
         //private readonly GameContext _gameContext;
 
