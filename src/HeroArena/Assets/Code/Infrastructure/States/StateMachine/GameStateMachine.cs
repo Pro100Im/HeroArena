@@ -1,6 +1,5 @@
 ﻿using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
-using UnityEngine;
 
 namespace Code.Infrastructure.States.StateMachine
 {
@@ -22,28 +21,24 @@ namespace Code.Infrastructure.States.StateMachine
 
         public void Enter<TState>() where TState : class, IState
         {
-            IState state = ChangeState<TState>();
+            var state = ChangeState<TState>();
 
             state.Enter();
         }
 
         public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadState<TPayload>
         {
-            IPayloadState<TPayload> state = ChangeState<IPayloadState<TPayload>>();
+            var state = ChangeState<IPayloadState<TPayload>>();
 
             state.Enter(payload);
         }
 
         private TState ChangeState<TState>() where TState : class, IExitableState
         {
-            if(_stateFactory is null)
-            {
-                Debug.Log("_stateFactory is null");
-            }
-
             _activeState?.Exit();
 
-            TState state = _stateFactory.GetState<TState>();
+            var state = _stateFactory.GetState<TState>();
+
             _activeState = state;
 
             return state;

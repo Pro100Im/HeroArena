@@ -1,4 +1,11 @@
+using Code.Game.Features;
+using Code.Game.Features.Input;
+using Code.Game.Features.Input.Systems;
+using Code.Game.Features.Movement;
+using Code.Game.Features.Movement.Systems;
+using Code.Game.Features.Player;
 using Code.Game.Features.Player.Factory;
+using Code.Game.Features.Player.Systems;
 using Code.Game.Input.Service;
 using Code.Infrastructure.DI.EntryPoints;
 using Code.Infrastructure.Identifiers;
@@ -6,7 +13,9 @@ using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Systems;
+using Code.Infrastructure.View;
 using Code.Infrastructure.View.Factory;
+using Code.Infrastructure.View.Systems;
 using Entitas;
 using System.Linq;
 using System.Reflection;
@@ -29,7 +38,10 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             BindServices(builder);
             BindGameStates(builder);
             BindStateMachine(builder);
+
             BindSystems(builder);
+            BindFeatures(builder);
+
             BindGameFactories(builder);
 
             builder.RegisterEntryPoint<GameWorld>();
@@ -70,17 +82,28 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<GameOverState>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
         }
 
+        private void BindFeatures(IContainerBuilder builder)
+        {
+            builder.Register<GameFeature>(Lifetime.Singleton);
+            builder.Register<BindViewFeature>(Lifetime.Singleton);
+            builder.Register<InputFeature>(Lifetime.Singleton);
+            builder.Register<PlayerFeature>(Lifetime.Singleton);
+            builder.Register<MovementFeature>(Lifetime.Singleton);
+        }
+
         private void BindSystems(IContainerBuilder builder)
         {
-            var systemType = typeof(ISystem);
-            var implementations = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => systemType.IsAssignableFrom(t) && t.IsClass && !t.IsAbstract);
+            builder.Register<BindEntityViewFromPathSystem>(Lifetime.Singleton);
+            builder.Register<BindEntityViewFromPrefabSystem>(Lifetime.Singleton);
 
-            foreach (var impl in implementations)
-            {
-                builder.Register(impl, Lifetime.Transient).As<ISystem>().AsSelf();
-            }
+            builder.Register<InitializeInputSystem>(Lifetime.Singleton);
+            builder.Register<EmitInputSystem>(Lifetime.Singleton);
+
+            builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
+
+            builder.Register<DirectionalDeltaMoveSystem>(Lifetime.Singleton);
+            builder.Register<UpdateTransformPositionSystem>(Lifetime.Singleton);
+            builder.Register<RotateAlongDirectionSystem>(Lifetime.Singleton);
         }
 
         private void BindGameFactories(IContainerBuilder builder)

@@ -19,7 +19,7 @@ namespace Code.Common.Windows
 
         public void Close(WindowId windowId)
         {
-            BaseWindow window = _openedWindows.Find(x => x.Id == windowId);
+            var window = _openedWindows.Find(x => x.Id == windowId);
 
             _openedWindows.Remove(window);
 
