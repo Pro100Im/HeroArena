@@ -4,10 +4,12 @@
     {
         public virtual void Enter()
         {
+
         }
 
         protected virtual void Exit()
         {
+
         }
 
         void IExitableState.Exit()

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Code.Infrastructure.Loading
+namespace Code.Infrastructure.Helpers
 {
-    // Has execution order to start before every other script
+    // Has execution order to start before every other script // TO DO
     public class SwitchToEntrySceneInEditor : MonoBehaviour
     {
 #if UNITY_EDITOR

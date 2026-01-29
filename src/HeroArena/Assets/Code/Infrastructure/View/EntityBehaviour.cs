@@ -10,6 +10,7 @@ namespace Code.Infrastructure.View
         //private ICollisionRegistry _collisionRegistry;
 
         public GameEntity Entity => _entity;
+        public GameObject GameObject => gameObject;
 
         //[Inject]
         //private void Construct(ICollisionRegistry collisionRegistry) =>

@@ -15,10 +15,11 @@ namespace Code.Common.Destruct.Systems
 
         public void Cleanup()
         {
-            foreach(GameEntity entity in _entities)
+            foreach (GameEntity entity in _entities)
             {
                 entity.view.Value.ReleaseEntity();
-                Object.Destroy(entity.view.Value.gameObject);
+
+                Object.Destroy(entity.view.Value.GameObject);
             }
         }
     }
