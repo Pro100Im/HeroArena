@@ -1,16 +1,19 @@
+using Code.Infrastructure.DI.EntryPoints;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
-public class MenuScope : MonoBehaviour
+namespace Code.Infrastructure.DI.LifetimeScopes
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class MenuScope : LifetimeScope
     {
-        
-    }
+        [SerializeField] private string _gameScreenSceneName = "Game";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private const string _sceneParameter = "gameScreenSceneName";
+
+        protected override void Configure(IContainerBuilder builder)
+        {
+            builder.RegisterEntryPoint<MenuWorld>().WithParameter(_sceneParameter, _gameScreenSceneName);
+        }
     }
 }

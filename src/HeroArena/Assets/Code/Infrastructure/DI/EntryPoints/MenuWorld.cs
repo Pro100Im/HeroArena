@@ -1,16 +1,13 @@
-using UnityEngine;
+using Code.Common.StaticData;
+using Code.Infrastructure.Loading;
 
-public class MenuWorld : MonoBehaviour
+namespace Code.Infrastructure.DI.LifetimeScopes
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class MenuWorld
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public MenuWorld()
+        {
+            
+        }
     }
 }

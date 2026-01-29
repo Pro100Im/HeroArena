@@ -1,6 +1,5 @@
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
-using UnityEngine;
 using VContainer.Unity;
 
 namespace Code.Infrastructure.DI.EntryPoints
@@ -16,8 +15,7 @@ namespace Code.Infrastructure.DI.EntryPoints
 
         public void Initialize()
         {
-            Debug.LogWarning("Initialize()");
-            _gameStateMachine.Enter<BootstrapState>();
+            _gameStateMachine.Enter<GameEnterState>();
         }
 
         public void Tick()
