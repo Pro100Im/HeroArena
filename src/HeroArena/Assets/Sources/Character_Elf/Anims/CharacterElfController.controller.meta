@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: cd33dfaf4cd17aa44aae281d45a2be94
+<<<<<<<< HEAD:src/HeroArena/Assets/Sources/Character_Elf/Anims/CharacterElfController.controller.meta
+guid: 32cf5a99a14f32e4e9e9b63764db9551
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000
+========
+guid: ba93e83d55fd6b54c8a7fd8265ba0a69
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>>> feature/Vcontainer2:src/HeroArena/Assets/Settings/DI/VContainerSettings.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

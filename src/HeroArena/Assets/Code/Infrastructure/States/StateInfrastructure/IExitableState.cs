@@ -1,4 +1,3 @@
-//using RSG;
 
 namespace Code.Infrastructure.States.StateInfrastructure
 {

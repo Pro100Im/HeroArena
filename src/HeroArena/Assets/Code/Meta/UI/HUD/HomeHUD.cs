@@ -1,9 +1,8 @@
 ﻿using Code.Common.Windows;
-using Code.Infrastructure.States.GameStates;
-using Code.Infrastructure.States.StateMachine;
+using Code.Infrastructure.Loading;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
+using VContainer;
 
 namespace Code.Meta.UI.HUD
 {
@@ -13,13 +12,13 @@ namespace Code.Meta.UI.HUD
         [Space]
         [SerializeField] private Button _startBattleButton;
 
-        private IGameStateMachine _stateMachine;
+        private ISceneLoader _sceneLoader;
         private IWindowService _windowService;
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine, IWindowService windowService)
+        private void Construct(ISceneLoader sceneLoader, IWindowService windowService)
         {
-            _stateMachine = gameStateMachine;
+            _sceneLoader = sceneLoader;
             _windowService = windowService;
         }
 
@@ -30,7 +29,7 @@ namespace Code.Meta.UI.HUD
 
         private void EnterBattleLoadingState()
         {
-            _stateMachine.Enter<LoadingGameState, string>(_gameSceneName);
+            _sceneLoader.LoadScene(_gameSceneName);
         }
 
         private void OnDestroy()

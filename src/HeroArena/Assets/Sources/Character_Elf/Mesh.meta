@@ -1,8 +1,13 @@
 fileFormatVersion: 2
-guid: 7d14f05552072a24aabf28ac251deb8b
+<<<<<<<< HEAD:src/HeroArena/Assets/Sources/Character_Elf/Mesh.meta
+guid: 547281cc2a91b58468c611859f602a64
 folderAsset: yes
 timeCreated: 1521389040
 licenseType: Store
+========
+guid: 4680dd60fc414a8489651ebc550967a1
+folderAsset: yes
+>>>>>>>> feature/Vcontainer2:src/HeroArena/Assets/Settings/DI.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

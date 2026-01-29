@@ -13,7 +13,7 @@ namespace Code.Common.Destruct.Systems
 
         public void Cleanup()
         {
-            foreach(GameEntity entity in _entities.GetEntities(_buffer))
+            foreach (GameEntity entity in _entities.GetEntities(_buffer))
                 entity.Destroy();
         }
     }

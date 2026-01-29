@@ -20,7 +20,7 @@ namespace Code.Infrastructure.Loading
 
         private IEnumerator Load(string nextScene, Action onLoaded)
         {
-            if(SceneManager.GetActiveScene().name == nextScene)
+            if (SceneManager.GetActiveScene().name == nextScene)
             {
                 onLoaded?.Invoke();
 
@@ -29,7 +29,7 @@ namespace Code.Infrastructure.Loading
 
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
-            while(!waitNextScene.isDone)
+            while (!waitNextScene.isDone)
                 yield return null;
 
             onLoaded?.Invoke();

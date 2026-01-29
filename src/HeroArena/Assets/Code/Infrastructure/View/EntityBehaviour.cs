@@ -1,7 +1,6 @@
 ﻿//using Code.Gameplay.Common.Collisions;
 using Code.Infrastructure.View.Registrars;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Infrastructure.View
 {
@@ -11,6 +10,7 @@ namespace Code.Infrastructure.View
         //private ICollisionRegistry _collisionRegistry;
 
         public GameEntity Entity => _entity;
+        public GameObject GameObject => gameObject;
 
         //[Inject]
         //private void Construct(ICollisionRegistry collisionRegistry) =>

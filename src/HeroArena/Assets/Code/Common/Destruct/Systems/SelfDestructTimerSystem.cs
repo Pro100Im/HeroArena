@@ -18,9 +18,9 @@ namespace Code.Common.Destruct.Systems
 
         public void Execute()
         {
-            foreach(GameEntity entity in _entities.GetEntities(_buffer))
+            foreach (GameEntity entity in _entities.GetEntities(_buffer))
             {
-                if(entity.selfDestructTimer.Value > 0)
+                if (entity.selfDestructTimer.Value > 0)
                 {
                     entity.ReplaceSelfDestructTimer(entity.selfDestructTimer.Value - _time.DeltaTime);
                 }
