@@ -19,7 +19,7 @@ namespace Code.Infrastructure.View.Factory
         public EntityBehaviour CreateViewForEntity(GameEntity entity)
         {
             var viewPrefab = _assetProvider.LoadAsset<EntityBehaviour>(entity.viewPath.Value);
-            var view = GameObject.Instantiate<EntityBehaviour>(viewPrefab, _farAway, Quaternion.identity, null);
+            var view = GameObject.Instantiate<EntityBehaviour>(viewPrefab, Vector3.zero, Quaternion.identity, null);
 
             _objectResolver.Inject(view);
 
@@ -30,7 +30,7 @@ namespace Code.Infrastructure.View.Factory
 
         public EntityBehaviour CreateViewForEntityFromPrefab(GameEntity entity)
         {
-            var view = GameObject.Instantiate<EntityBehaviour>(entity.viewPrefab.Value, _farAway, Quaternion.identity, null);
+            var view = GameObject.Instantiate<EntityBehaviour>(entity.viewPrefab.Value, Vector3.zero, Quaternion.identity, null);
 
             _objectResolver.Inject(view);
 

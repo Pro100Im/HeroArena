@@ -18,11 +18,12 @@ namespace Code.Game.Features.Player.Factory
             var entity = CreateEntity.Empty();
             entity.AddId(_identifiers.Next());
             entity.AddDirection(Vector2.zero);
-            entity.AddSpeed(2);
+            entity.AddSpeed(1f);
+            entity.AddMaxSpeed(2f);
+            entity.AddCurrentSpeed(0f);
             entity.AddViewPath("Game/Player/Player");
             entity.isPlayerSpawnRequsted = true;
             entity.isPlayer = true;
-            entity.isMovementAvailable = true;
             entity.isRotationAlignedAlongDirection = true;
 
             return entity;

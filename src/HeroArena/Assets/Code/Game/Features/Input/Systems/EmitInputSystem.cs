@@ -21,7 +21,7 @@ namespace Code.Game.Features.Input.Systems
             {
                 if(_inputService.HasAxisInput())
                     input.ReplaceAxisInput(new Vector2(_inputService.GetHorizontalAxis(), _inputService.GetVerticalAxis()));
-                else if(input.hasAxisInput)
+                else if (input.hasAxisInput)
                     input.RemoveAxisInput();
             }
         }

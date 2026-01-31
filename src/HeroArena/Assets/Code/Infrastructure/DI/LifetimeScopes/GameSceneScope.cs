@@ -97,7 +97,9 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<EmitInputSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerSpawnSystem>(Lifetime.Singleton);
+            builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
             builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
+            builder.Register<PlayerSpeedSetupSystem>(Lifetime.Singleton);
 
             builder.Register<MoveByCharacterControllerSystem>(Lifetime.Singleton);
             builder.Register<UpdateTransformPositionSystem>(Lifetime.Singleton);

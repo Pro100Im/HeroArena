@@ -20,16 +20,18 @@ public static class GameComponentsLookup {
     public const int ViewPath = 9;
     public const int ViewPrefab = 10;
     public const int WorldPosition = 11;
-    public const int Direction = 12;
-    public const int MovementAvailable = 13;
-    public const int Moving = 14;
-    public const int RotationAlignedAlongDirection = 15;
-    public const int Speed = 16;
-    public const int Player = 17;
-    public const int PlayerLocomotion = 18;
-    public const int PlayerSpawnRequsted = 19;
+    public const int CurrentSpeed = 12;
+    public const int Direction = 13;
+    public const int MaxSpeed = 14;
+    public const int MovementAvailable = 15;
+    public const int Moving = 16;
+    public const int RotationAlignedAlongDirection = 17;
+    public const int Speed = 18;
+    public const int PlayerAnimator = 19;
+    public const int Player = 20;
+    public const int PlayerSpawnRequsted = 21;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 22;
 
     public static readonly string[] componentNames = {
         "Active",
@@ -44,13 +46,15 @@ public static class GameComponentsLookup {
         "ViewPath",
         "ViewPrefab",
         "WorldPosition",
+        "CurrentSpeed",
         "Direction",
+        "MaxSpeed",
         "MovementAvailable",
         "Moving",
         "RotationAlignedAlongDirection",
         "Speed",
+        "PlayerAnimator",
         "Player",
-        "PlayerLocomotion",
         "PlayerSpawnRequsted"
     };
 
@@ -67,13 +71,15 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Common.ViewPath),
         typeof(Code.Game.Common.ViewPrefab),
         typeof(Code.Game.Common.WorldPosition),
+        typeof(Code.Game.Features.Movement.CurrentSpeed),
         typeof(Code.Game.Features.Movement.Direction),
+        typeof(Code.Game.Features.Movement.MaxSpeed),
         typeof(Code.Game.Features.Movement.MovementAvailable),
         typeof(Code.Game.Features.Movement.Moving),
         typeof(Code.Game.Features.Movement.RotationAlignedAlongDirection),
         typeof(Code.Game.Features.Movement.Speed),
+        typeof(Code.Game.Features.Player.PlayerAnimatorComponent),
         typeof(Code.Game.Features.Player.PlayerComponent),
-        typeof(Code.Game.Features.Player.PlayerLocomotionComponent),
         typeof(Code.Game.Features.Player.PlayerSpawnRequsted)
     };
 }

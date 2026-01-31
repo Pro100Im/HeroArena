@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6119649771742793630}
   - component: {fileID: 7426727804184002038}
-  - component: {fileID: 7398135355510902181}
+  - component: {fileID: 5556309700885120373}
   - component: {fileID: -7261017404258374183}
   - component: {fileID: 3666284892009537564}
   - component: {fileID: 8325538329748404535}
@@ -63,7 +63,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &7398135355510902181
+--- !u!114 &5556309700885120373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,9 +72,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 597244949361831437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95bb91895c60a194899c4075ad77cbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f1f943548058b041a62e7c31a06b518, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Player.Service.PlayerLocomotionService
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Player.Service.PlayerAnimatorService
+  _verticalParameter: Vertical
+  _horizontalParameter: Horizontal
+  _animator: {fileID: 6006460847833470714}
 --- !u!114 &-7261017404258374183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Player.Registrars.PlayerLocomotionRegistrar
   EntityView: {fileID: -7261017404258374183}
-  _locomotionService: {fileID: 7398135355510902181}
+  _animatorService: {fileID: 5556309700885120373}
 --- !u!1001 &5911222763592883418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9659258
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
       propertyPath: m_LocalRotation.x
@@ -162,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.2588191
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
       propertyPath: m_LocalRotation.z
@@ -174,10 +177,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95663668927121952, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -188,5 +195,10 @@ PrefabInstance:
 --- !u!4 &5910585332071307766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
+  m_PrefabInstance: {fileID: 5911222763592883418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6006460847833470714 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95663668927121952, guid: ffa08167d28cfd24dba0151a4c80f384, type: 3}
   m_PrefabInstance: {fileID: 5911222763592883418}
   m_PrefabAsset: {fileID: 0}

@@ -20,11 +20,18 @@ namespace Code.Game.Features.Movement.Systems
         {
             foreach(GameEntity entity in _entities)
             {
-                if(entity.direction.Value.sqrMagnitude >= 0.01f)
+                if (entity.direction.Value.sqrMagnitude >= 0.01f)
                 {
-                    var angle = Mathf.Atan2(entity.direction.Value.x, entity.direction.Value.z) * Mathf.Rad2Deg;
+                    var dir = entity.direction.Value;
+                    var targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                    var moveSpeed = dir.magnitude;
+                    var rotationSpeed = 180f + 90f * moveSpeed;
 
-                    entity.transform.Value.rotation = Quaternion.Euler(0, angle, 0);
+                    entity.transform.Value.rotation = Quaternion.RotateTowards(
+                        entity.transform.Value.rotation,
+                        targetRotation,
+                        rotationSpeed * Time.deltaTime
+                    );
                 }
             }
         }

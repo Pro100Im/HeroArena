@@ -1,3 +1,4 @@
+using Code.Game.Features.Movement;
 using Entitas;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Code.Game.Features.Player.Systems
             {
                 player.transform.Value.position = Vector3.up;
                 player.isPlayerSpawnRequsted = false;
+                player.isMovementAvailable = true;
             }
         }
     }

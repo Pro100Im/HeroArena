@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Code.Game.Features.Player.Registrars
 {
-    public class PlayerLocomotionRegistrar : EntityComponentRegistrar
+    public class PlayerAnimatorRegistrar : EntityComponentRegistrar
     {
-        [SerializeField] private PlayerLocomotionService _locomotionService;
+        [SerializeField] private PlayerAnimatorService _animatorService;
 
         public override void RegisterComponents()
         {
-            Entity.AddPlayerLocomotion(_locomotionService);
+            Entity.AddPlayerAnimator(_animatorService);
         }
 
         public override void UnregisterComponents()
         {
-            if (Entity.hasPlayerLocomotion)
-                Entity.RemovePlayerLocomotion();
+            if (Entity.hasPlayerAnimator)
+                Entity.RemovePlayerAnimator();
         }
     }
 }

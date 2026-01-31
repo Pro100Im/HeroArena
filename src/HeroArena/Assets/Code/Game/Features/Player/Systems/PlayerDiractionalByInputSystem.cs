@@ -15,7 +15,8 @@ namespace Code.Game.Features.Player.Systems
             _players = gameContext.GetGroup(GameMatcher
                 .AllOf(
                 GameMatcher.Player,
-                GameMatcher.MovementAvailable));
+                GameMatcher.MovementAvailable,
+                GameMatcher.CurrentSpeed));
 
             _inputs = inputContext.GetGroup(InputMatcher.Input);
             _direction = Vector3.zero;
@@ -29,12 +30,19 @@ namespace Code.Game.Features.Player.Systems
                 {
                     player.isMoving = input.hasAxisInput;
 
-                    if (input.hasAxisInput)
+                    if (player.isMoving)
                     {
                         _direction.x = input.axisInput.Value.x;
                         _direction.z = input.axisInput.Value.y;
 
                         player.ReplaceDirection(_direction.normalized);
+                    }
+                    else
+                    {
+                        if (player.currentSpeed.Value <= 0)
+                        {
+                            player.ReplaceDirection(Vector3.zero);
+                        }
                     }
                 }
             }

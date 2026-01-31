@@ -9,7 +9,10 @@ namespace Code.Game.Features.Player
         {
             //Add(systemFactory.Create<PlayerCameraInitSystem>());
             Add(systemFactory.Create<PlayerSpawnSystem>());
+
+            Add(systemFactory.Create<PlayerAnimatorSystem>());
             Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
+            Add(systemFactory.Create<PlayerSpeedSetupSystem>());
         }
     }
 }
