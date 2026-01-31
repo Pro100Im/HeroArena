@@ -22,8 +22,9 @@ namespace Code.Game.Features.Movement.Systems
             {
                 if(entity.direction.Value.sqrMagnitude >= 0.01f)
                 {
-                    float angle = Mathf.Atan2(entity.direction.Value.y, entity.direction.Value.x) * Mathf.Rad2Deg;
-                    entity.transform.Value.rotation = Quaternion.Euler(0, 0, angle);
+                    var angle = Mathf.Atan2(entity.direction.Value.x, entity.direction.Value.z) * Mathf.Rad2Deg;
+
+                    entity.transform.Value.rotation = Quaternion.Euler(0, angle, 0);
                 }
             }
         }

@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6119649771742793630}
-  - component: {fileID: 7868831043428682831}
   - component: {fileID: 7426727804184002038}
+  - component: {fileID: 7398135355510902181}
   - component: {fileID: -7261017404258374183}
   - component: {fileID: 3666284892009537564}
   - component: {fileID: 8325538329748404535}
+  - component: {fileID: -6567897368112127657}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -37,29 +38,6 @@ Transform:
   - {fileID: 5910585332071307766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &7868831043428682831
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597244949361831437}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!143 &7426727804184002038
 CharacterController:
   m_ObjectHideFlags: 0
@@ -85,6 +63,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &7398135355510902181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597244949361831437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bb91895c60a194899c4075ad77cbb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Player.Service.PlayerLocomotionService
 --- !u!114 &-7261017404258374183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +114,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Common.Registrars.CharacterControllerRegistrar
   EntityView: {fileID: -7261017404258374183}
   _characterController: {fileID: 7426727804184002038}
+--- !u!114 &-6567897368112127657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597244949361831437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fa3f1d4b27d2241a1e49565519c770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Player.Registrars.PlayerLocomotionRegistrar
+  EntityView: {fileID: -7261017404258374183}
+  _locomotionService: {fileID: 7398135355510902181}
 --- !u!1001 &5911222763592883418
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Settings.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -9,79 +10,46 @@ namespace Code.Game.Input.Service
     {
         private Camera _mainCamera;
         private Vector3 _screenPosition;
+        private NewInputSystemApi _newInputSystemApi;
 
-        public Camera CameraMain
+        public InputService()
         {
-            get
-            {
-                if(_mainCamera == null && Camera.main != null)
-                    _mainCamera = Camera.main;
-
-                return _mainCamera;
-            }
+            _newInputSystemApi = new NewInputSystemApi();
+            _mainCamera = Camera.main;
         }
 
         public Vector2 GetScreenMousePosition() =>
-            CameraMain ? Mouse.current?.position.ReadValue() ?? Vector2.zero : Vector2.zero;
+            _mainCamera ? Mouse.current?.position.ReadValue() ?? Vector2.zero : Vector2.zero;
 
         public Vector2 GetWorldMousePosition()
         {
-            if(CameraMain == null || Mouse.current == null)
+            if(_mainCamera == null || Mouse.current == null)
                 return Vector2.zero;
 
             _screenPosition = Mouse.current.position.ReadValue();
-            return CameraMain.ScreenToWorldPoint(_screenPosition);
+
+            return _mainCamera.ScreenToWorldPoint(_screenPosition);
         }
 
-        public bool HasAxisInput() => GetHorizontalAxis() != 0 || GetVerticalAxis() != 0;
+        public void EnableInput() => _newInputSystemApi.Player.Enable();
+        public void DisableInput() => _newInputSystemApi.Player.Disable();
 
-        public float GetVerticalAxis()
-        {
-            var keyboard = Keyboard.current;
+        public bool HasAxisInput() => GetInputAxis().magnitude > 0;
 
-            if(keyboard == null) return 0f;
+        public float GetVerticalAxis() => GetInputAxis().y;
 
-            var value = 0f;
+        public float GetHorizontalAxis() => GetInputAxis().x;
 
-            if(keyboard.wKey.isPressed) 
-                value += 1f;
 
-            if(keyboard.sKey.isPressed) 
-                value -= 1f;
+        public bool GetLeftMouseButton() => Mouse.current?.leftButton.isPressed == true && !IsPointerOverUI();
 
-            return value;
-        }
+        public bool GetLeftMouseButtonDown() => Mouse.current?.leftButton.wasPressedThisFrame == true && !IsPointerOverUI();
 
-        public float GetHorizontalAxis()
-        {
-            var keyboard = Keyboard.current;
+        public bool GetLeftMouseButtonUp() => Mouse.current?.leftButton.wasReleasedThisFrame == true && !IsPointerOverUI();
 
-            if(keyboard == null) return 0f;
 
-            float value = 0f;
+        private Vector2 GetInputAxis() => _newInputSystemApi.Player.Move.ReadValue<Vector2>();
 
-            if(keyboard.dKey.isPressed) 
-                value += 1f;
-
-            if(keyboard.aKey.isPressed) 
-                value -= 1f;
-
-            return value;
-        }
-
-        public bool GetLeftMouseButton() =>
-            Mouse.current?.leftButton.isPressed == true && !IsPointerOverUI();
-
-        public bool GetLeftMouseButtonDown() =>
-            Mouse.current?.leftButton.wasPressedThisFrame == true && !IsPointerOverUI();
-
-        public bool GetLeftMouseButtonUp() =>
-            Mouse.current?.leftButton.wasReleasedThisFrame == true && !IsPointerOverUI();
-
-        private bool IsPointerOverUI()
-        {
-            if(EventSystem.current == null) return false;
-            return EventSystem.current.IsPointerOverGameObject();
-        }
+        private bool IsPointerOverUI() => EventSystem.current == null ? false : EventSystem.current.IsPointerOverGameObject();
     }
 }

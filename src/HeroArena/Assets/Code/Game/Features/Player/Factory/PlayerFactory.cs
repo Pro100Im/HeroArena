@@ -23,6 +23,7 @@ namespace Code.Game.Features.Player.Factory
             entity.isPlayerSpawnRequsted = true;
             entity.isPlayer = true;
             entity.isMovementAvailable = true;
+            entity.isRotationAlignedAlongDirection = true;
 
             return entity;
         }

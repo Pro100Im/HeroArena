@@ -26,9 +26,10 @@ public static class GameComponentsLookup {
     public const int RotationAlignedAlongDirection = 15;
     public const int Speed = 16;
     public const int Player = 17;
-    public const int PlayerSpawnRequsted = 18;
+    public const int PlayerLocomotion = 18;
+    public const int PlayerSpawnRequsted = 19;
 
-    public const int TotalComponents = 19;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
         "Active",
@@ -49,6 +50,7 @@ public static class GameComponentsLookup {
         "RotationAlignedAlongDirection",
         "Speed",
         "Player",
+        "PlayerLocomotion",
         "PlayerSpawnRequsted"
     };
 
@@ -71,6 +73,7 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Features.Movement.RotationAlignedAlongDirection),
         typeof(Code.Game.Features.Movement.Speed),
         typeof(Code.Game.Features.Player.PlayerComponent),
+        typeof(Code.Game.Features.Player.PlayerLocomotionComponent),
         typeof(Code.Game.Features.Player.PlayerSpawnRequsted)
     };
 }
