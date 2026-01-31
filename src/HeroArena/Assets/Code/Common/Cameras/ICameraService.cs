@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class ICameraService : MonoBehaviour
+namespace Code.Common.Cameras
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public interface ICameraService
     {
-        
-    }
+        void SetTarget(Transform target);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bool HasTarget();
     }
 }

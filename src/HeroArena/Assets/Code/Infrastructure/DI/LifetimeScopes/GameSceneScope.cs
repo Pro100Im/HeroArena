@@ -1,3 +1,4 @@
+using Code.Common.Cameras;
 using Code.Game.Features;
 using Code.Game.Features.Input;
 using Code.Game.Features.Input.Systems;
@@ -65,6 +66,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         private void BindServices(IContainerBuilder builder)
         {
             builder.Register<IInputService, InputService>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<ICameraService>().AsImplementedInterfaces().AsSelf();
         }
 
         private void BindStateMachine(IContainerBuilder builder)
@@ -97,6 +99,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<EmitInputSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerSpawnSystem>(Lifetime.Singleton);
+            builder.Register<PlayerCameraInitSystem>(Lifetime.Singleton);
             builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
             builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
             builder.Register<PlayerSpeedSetupSystem>(Lifetime.Singleton);

@@ -1,7 +1,14 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class CameraService : MonoBehaviour
+namespace Code.Common.Cameras
 {
-    [SerializeField] private CinemachineCamera _cinemachineCamera;
+    public class CinemachineCameraService : MonoBehaviour, ICameraService
+    {
+        [SerializeField] private CinemachineCamera _cinemachineCamera;
+
+        public void SetTarget(Transform target) => _cinemachineCamera.Follow = target;
+
+        public bool HasTarget() => _cinemachineCamera.Follow != null;
+    }
 }

@@ -19,7 +19,7 @@ namespace Code.Game.Features.Player.Factory
             entity.AddId(_identifiers.Next());
             entity.AddDirection(Vector2.zero);
             entity.AddSpeed(1f);
-            entity.AddMaxSpeed(2f);
+            entity.AddMaxSpeed(3f);
             entity.AddCurrentSpeed(0f);
             entity.AddViewPath("Game/Player/Player");
             entity.isPlayerSpawnRequsted = true;

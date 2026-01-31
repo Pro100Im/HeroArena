@@ -7,8 +7,8 @@ namespace Code.Game.Features.Player
     {
         public PlayerFeature(ISystemFactory systemFactory)
         {
-            //Add(systemFactory.Create<PlayerCameraInitSystem>());
             Add(systemFactory.Create<PlayerSpawnSystem>());
+            Add(systemFactory.Create<PlayerCameraInitSystem>());
 
             Add(systemFactory.Create<PlayerAnimatorSystem>());
             Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
