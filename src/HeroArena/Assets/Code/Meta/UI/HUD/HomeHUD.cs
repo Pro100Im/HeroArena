@@ -1,4 +1,5 @@
-﻿using Code.Common.Windows;
+﻿using Code.Common.Transition;
+using Code.Common.Windows;
 using Code.Infrastructure.Loading;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,17 +15,20 @@ namespace Code.Meta.UI.HUD
 
         private ISceneLoader _sceneLoader;
         private IWindowService _windowService;
+        private TransitionService _transitionService;
 
         [Inject]
-        private void Construct(ISceneLoader sceneLoader, IWindowService windowService)
+        private void Construct(ISceneLoader sceneLoader, IWindowService windowService, TransitionService transitionService)
         {
             _sceneLoader = sceneLoader;
             _windowService = windowService;
+            _transitionService = transitionService;
         }
 
         private void Awake()
         {
             _startBattleButton.onClick.AddListener(EnterBattleLoadingState);
+            _transitionService.Execute(0);
         }
 
         private void EnterBattleLoadingState()

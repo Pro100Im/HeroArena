@@ -1,4 +1,4 @@
-using Code.Infrastructure.DI.EntryPoints;
+using Code.Common.Transition;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -14,6 +14,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<MenuWorld>().WithParameter(_sceneParameter, _gameScreenSceneName);
+            builder.RegisterComponentInHierarchy<TransitionService>();
         }
     }
 }
