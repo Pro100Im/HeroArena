@@ -82,7 +82,7 @@ PlayerSettings:
   androidApplicationEntry: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 0
+  runInBackground: 1
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
   Force IOS Speakers When Recording: 0
@@ -944,10 +944,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 6a0fa45b-1aef-4a9d-b25d-0861c619297b
+  cloudProjectId: f122e266-113a-4129-98c7-212ce5dcb77e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: HeroArena 2026-01-25_10-17-32
+  projectName: HeroArena
   organizationId: pro100elite
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
