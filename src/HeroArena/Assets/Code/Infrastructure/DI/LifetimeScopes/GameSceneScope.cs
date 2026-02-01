@@ -1,4 +1,5 @@
 using Code.Common.Cameras;
+using Code.Common.Transition;
 using Code.Game.Features;
 using Code.Game.Features.Input;
 using Code.Game.Features.Input.Systems;
@@ -67,6 +68,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         {
             builder.Register<IInputService, InputService>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<ICameraService>().AsImplementedInterfaces().AsSelf();
+            builder.RegisterComponentInHierarchy<TransitionService>();
         }
 
         private void BindStateMachine(IContainerBuilder builder)

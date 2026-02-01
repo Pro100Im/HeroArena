@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +11,11 @@ namespace Code.Common.Transition
         [Space]
         [SerializeField] private Image _image;
    
-        public void Execute(float endValue)
+        public async UniTask Execute(float endValue)
         {
             DOTween.Kill(_image);
 
-            _image.DOFade(endValue, _duration);
+            await _image.DOFade(endValue, _duration).AsyncWaitForCompletion();
         }
     }
 }

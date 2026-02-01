@@ -1,6 +1,7 @@
 ﻿using Code.Common.Transition;
 using Code.Common.Windows;
 using Code.Infrastructure.Loading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -28,11 +29,13 @@ namespace Code.Meta.UI.HUD
         private void Awake()
         {
             _startBattleButton.onClick.AddListener(EnterBattleLoadingState);
-            _transitionService.Execute(0);
+            _transitionService.Execute(0).AsTask();
         }
 
-        private void EnterBattleLoadingState()
+        private async void EnterBattleLoadingState()
         {
+            await _transitionService.Execute(1);
+
             _sceneLoader.LoadScene(_gameSceneName);
         }
 
