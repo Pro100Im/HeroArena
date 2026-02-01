@@ -1,5 +1,5 @@
-﻿using Code.Common.Transition;
-using Code.Common.Windows;
+﻿using Code.Common.Network;
+using Code.Common.Transition;
 using Code.Infrastructure.Loading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -17,6 +17,7 @@ namespace Code.Meta.UI.HUD
         [SerializeField] private string _gameSceneName = "Game";
         [Space]
         [SerializeField] private Button _startBattleButton;
+        [SerializeField] private Button _startHostButton;
         [Space]
         [SerializeField] private CanvasGroup _introGroup;
         [SerializeField] private CanvasGroup _menuGroup;
@@ -24,21 +25,26 @@ namespace Code.Meta.UI.HUD
         [SerializeField] private InputActionMap _pressAnyBtn;
 
         private ISceneLoader _sceneLoader;
+        private INetworkConnectionService _networkConnectionService;
         private TransitionService _transitionService;
 
         public IObserver<InputControl> OnAnyButton { get; private set; }
 
         [Inject]
-        private void Construct(ISceneLoader sceneLoader, TransitionService transitionService)
+        private void Construct(ISceneLoader sceneLoader, INetworkConnectionService networkConnectionService, TransitionService transitionService)
         {
             _sceneLoader = sceneLoader;
             _transitionService = transitionService;
+            _networkConnectionService = networkConnectionService;
         }
 
         private void Awake()
         {
             _startBattleButton.onClick.AddListener(EnterBattleLoadingState);
+            _startHostButton.onClick.AddListener(StartHost);
+
             _transitionService.Execute(0).AsTask();
+
             _pressAnyBtn.actionTriggered += OnAnyButtonPress;
             _pressAnyBtn.Enable();
         }
@@ -65,9 +71,15 @@ namespace Code.Meta.UI.HUD
             _sceneLoader.LoadScene(_gameSceneName);
         }
 
+        private void StartHost()
+        {
+            _networkConnectionService.StartHost();
+        }
+
         private void OnDestroy()
         {
             _startBattleButton.onClick.RemoveAllListeners();
+            _startHostButton.onClick.RemoveAllListeners();
         }
     }
 }

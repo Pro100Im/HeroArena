@@ -775,6 +775,7 @@ MonoBehaviour:
   _fadeDuration: 0.2
   _gameSceneName: Game
   _startBattleButton: {fileID: 7322235375494154604}
+  _startHostButton: {fileID: 5456870367983702473}
   _introGroup: {fileID: 5134948240789564960}
   _menuGroup: {fileID: 3241857848048705237}
   _pressAnyBtn:

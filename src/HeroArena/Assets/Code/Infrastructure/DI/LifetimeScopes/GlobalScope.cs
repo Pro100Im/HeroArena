@@ -1,3 +1,4 @@
+using Code.Common.Network;
 using Code.Common.StaticData;
 using Code.Common.Time;
 using Code.Common.Transition;
@@ -44,6 +45,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
             builder.Register<IWindowService, WindowService>(Lifetime.Singleton);
+            builder.Register<INetworkConnectionService, NetworkConnectionService>(Lifetime.Singleton);
         }
 
         private void BindAssetManagementServices(IContainerBuilder builder)
