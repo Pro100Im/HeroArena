@@ -68,12 +68,12 @@ namespace Code.Meta.UI.HUD
         {
             await _transitionService.Execute(1);
 
-            _sceneLoader.LoadScene(_gameSceneName);
+            _sceneLoader.LocalLoad(_gameSceneName);
         }
 
         private void StartHost()
         {
-            _networkConnectionService.StartHost();
+            _networkConnectionService.QuickMatch();
         }
 
         private void OnDestroy()

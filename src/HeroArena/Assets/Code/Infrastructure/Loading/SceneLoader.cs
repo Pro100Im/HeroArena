@@ -1,6 +1,7 @@
 ﻿using Code.Infrastructure.Helpers;
 using System;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +16,12 @@ namespace Code.Infrastructure.Loading
             _coroutineRunner = coroutineRunner;
         }
 
-        public void LoadScene(string name, Action onLoaded = null) =>
+        public void NetworkLoad(string nextScene)
+        {
+            var waitNextScene = NetworkManager.Singleton.SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+        }
+
+        public void LocalLoad(string name, Action onLoaded = null) =>
           _coroutineRunner.StartCoroutine(Load(name, onLoaded));
 
         private IEnumerator Load(string nextScene, Action onLoaded)

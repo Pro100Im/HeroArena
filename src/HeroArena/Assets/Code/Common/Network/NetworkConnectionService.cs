@@ -1,9 +1,7 @@
-using DG.Tweening.Core.Easing;
-using System;
+using Code.Infrastructure.Loading;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity.Netcode;
-using Unity.Networking.Transport;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Multiplayer;
@@ -13,33 +11,46 @@ namespace Code.Common.Network
 {
     public class NetworkConnectionService : INetworkConnectionService
     {
-        public ISession Session { get; private set; }
-        public NetworkEndpoint ListenEndpoint { get; private set; }
-        public NetworkEndpoint ConnectEndpoint { get; private set; }
-        public NetworkType SessionConnectionType { get; private set; }
+        private ISceneLoader _sceneLoader;
+        private CancellationTokenSource _cancellationTokenSource;
 
-        public void Connect()
+        public NetworkConnectionService(ISceneLoader sceneLoader)
         {
-            throw new System.NotImplementedException();
+            _sceneLoader = sceneLoader;
         }
 
-        public void Disconnect()
+        public void QuickMatch()
         {
-            throw new System.NotImplementedException();
+            if(_cancellationTokenSource != null)
+            {
+                _cancellationTokenSource.Cancel();
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
+            }
+
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            JoinOrCreateMatchmakerGameAsync(_cancellationTokenSource.Token);
         }
 
-        public void StartHost()
+        public void CancelSerching()
         {
-            JoinOrCreateMatchmakerGameAsync(new CancellationToken());
+            _cancellationTokenSource?.Cancel();
         }
 
-        public void StopHost()
+        public async void JoinOrCreateMatchmakerGameAsync(CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
-        }
+            NetworkManager.Singleton.OnClientStarted += () =>
+            {
+                Debug.Log("client started");
+            };
 
-        public async Task JoinOrCreateMatchmakerGameAsync(CancellationToken cancellationToken)
-        {
+            NetworkManager.Singleton.OnServerStarted += () =>
+            {
+                Debug.Log("server started");
+                _sceneLoader.NetworkLoad("Game");
+            };
+
             await StartServicesAsync();
 
             var sessionOptions = new SessionOptions()
@@ -52,7 +63,7 @@ namespace Code.Common.Network
                 QueueName = "TestArena",
             };
 
-            Session = await MultiplayerService.Instance.MatchmakeSessionAsync(matchOptions, sessionOptions, cancellationToken);
+            await MultiplayerService.Instance.MatchmakeSessionAsync(matchOptions, sessionOptions, cancellationToken);
 
             Debug.LogWarning("Connected!");
         }
@@ -60,14 +71,10 @@ namespace Code.Common.Network
         private async Task StartServicesAsync()
         {
             if (UnityServices.State != ServicesInitializationState.Initialized)
-            {
                 await UnityServices.InitializeAsync();
-            }
 
             if (!AuthenticationService.Instance.IsAuthorized)
-            {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            }
         }
     }
 }

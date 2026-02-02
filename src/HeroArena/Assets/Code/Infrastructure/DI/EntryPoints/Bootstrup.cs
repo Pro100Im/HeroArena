@@ -21,7 +21,7 @@ namespace Code.Infrastructure.DI.EntryPoints
         public void Initialize()
         {
             _staticDataService.LoadAll();
-            _sceneLoader.LoadScene(_homeScreenSceneName);
+            _sceneLoader.LocalLoad(_homeScreenSceneName);
         }
     }
 }
