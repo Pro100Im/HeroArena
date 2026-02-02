@@ -1,7 +1,6 @@
 using Code.Infrastructure.Loading;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Multiplayer;
@@ -11,13 +10,7 @@ namespace Code.Common.Network
 {
     public class NetworkConnectionService : INetworkConnectionService
     {
-        private ISceneLoader _sceneLoader;
         private CancellationTokenSource _cancellationTokenSource;
-
-        public NetworkConnectionService(ISceneLoader sceneLoader)
-        {
-            _sceneLoader = sceneLoader;
-        }
 
         public void QuickMatch()
         {
@@ -40,17 +33,6 @@ namespace Code.Common.Network
 
         public async void JoinOrCreateMatchmakerGameAsync(CancellationToken cancellationToken)
         {
-            NetworkManager.Singleton.OnClientStarted += () =>
-            {
-                Debug.Log("client started");
-            };
-
-            NetworkManager.Singleton.OnServerStarted += () =>
-            {
-                Debug.Log("server started");
-                _sceneLoader.NetworkLoad("Game");
-            };
-
             await StartServicesAsync();
 
             var sessionOptions = new SessionOptions()

@@ -4,6 +4,7 @@ using Code.Infrastructure.Loading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -16,11 +17,13 @@ namespace Code.Meta.UI.HUD
         [SerializeField] private float _fadeDuration = 0.2f;
         [SerializeField] private string _gameSceneName = "Game";
         [Space]
-        [SerializeField] private Button _startBattleButton;
-        [SerializeField] private Button _startHostButton;
+        [SerializeField] private Button _trainButton;
+        [SerializeField] private Button _quickMatchButton;
+        [SerializeField] private Button _cancelSearchingButton;
         [Space]
         [SerializeField] private CanvasGroup _introGroup;
         [SerializeField] private CanvasGroup _menuGroup;
+        [SerializeField] private CanvasGroup _searchingGroup;
         [Space]
         [SerializeField] private InputActionMap _pressAnyBtn;
 
@@ -40,13 +43,24 @@ namespace Code.Meta.UI.HUD
 
         private void Awake()
         {
-            _startBattleButton.onClick.AddListener(EnterBattleLoadingState);
-            _startHostButton.onClick.AddListener(StartHost);
+            _trainButton.onClick.AddListener(EnterBattleLoadingState);
+            _quickMatchButton.onClick.AddListener(QuickMatch);
+            _cancelSearchingButton.onClick.AddListener(CancleQuickMatch);
 
             _transitionService.Execute(0).AsTask();
 
             _pressAnyBtn.actionTriggered += OnAnyButtonPress;
             _pressAnyBtn.Enable();
+
+            //NetworkManager.Singleton.OnClientStarted += () =>
+            //{
+            //    Debug.Log("client started");
+            //};
+        }
+
+        private void Start()
+        {
+            NetworkManager.Singleton.OnServerStarted += EnterNetworkBattleLoadingState;
         }
 
         private void OnAnyButtonPress(InputAction.CallbackContext context)
@@ -71,15 +85,44 @@ namespace Code.Meta.UI.HUD
             _sceneLoader.LocalLoad(_gameSceneName);
         }
 
-        private void StartHost()
+        private async void EnterNetworkBattleLoadingState()
         {
+            _searchingGroup.blocksRaycasts = false;
+
+            await _transitionService.Execute(1);
+
+            _sceneLoader.NetworkLoad(_gameSceneName);       
+        }
+
+        private void QuickMatch()
+        {
+            _menuGroup.DOFade(0, _fadeDuration);
+            _menuGroup.blocksRaycasts = false;
+
+            _searchingGroup.DOFade(1, _fadeDuration);
+            _searchingGroup.blocksRaycasts = true;
+
             _networkConnectionService.QuickMatch();
+        }
+
+        private void CancleQuickMatch()
+        {
+            _networkConnectionService.CancelSerching();
+
+            _menuGroup.DOFade(1, _fadeDuration);
+            _menuGroup.blocksRaycasts = true;
+
+            _searchingGroup.DOFade(0, _fadeDuration);
+            _searchingGroup.blocksRaycasts = false;
         }
 
         private void OnDestroy()
         {
-            _startBattleButton.onClick.RemoveAllListeners();
-            _startHostButton.onClick.RemoveAllListeners();
+            NetworkManager.Singleton.OnServerStarted -= EnterNetworkBattleLoadingState;
+
+            _trainButton.onClick.RemoveAllListeners();
+            _quickMatchButton.onClick.RemoveAllListeners();
+            _cancelSearchingButton.onClick.RemoveAllListeners();
         }
     }
 }
