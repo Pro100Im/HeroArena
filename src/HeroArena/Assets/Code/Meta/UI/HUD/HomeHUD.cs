@@ -47,8 +47,6 @@ namespace Code.Meta.UI.HUD
             _quickMatchButton.onClick.AddListener(QuickMatch);
             _cancelSearchingButton.onClick.AddListener(CancleQuickMatch);
 
-            _transitionService.Execute(0).AsTask();
-
             _pressAnyBtn.actionTriggered += OnAnyButtonPress;
             _pressAnyBtn.Enable();
 
@@ -61,6 +59,8 @@ namespace Code.Meta.UI.HUD
         private void Start()
         {
             NetworkManager.Singleton.OnServerStarted += EnterNetworkBattleLoadingState;
+
+            _transitionService.Execute(0).AsTask();
         }
 
         private void OnAnyButtonPress(InputAction.CallbackContext context)
