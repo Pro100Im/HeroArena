@@ -4,12 +4,13 @@ using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Multiplayer;
-using UnityEngine;
 
 namespace Code.Common.Network
 {
-    public class NetworkConnectionService : INetworkConnectionService
+    public class NetworkService : INetworkConnectionService, INetworkSessionService
     {
+        private ISession _session;
+
         private CancellationTokenSource _cancellationTokenSource;
 
         public void QuickMatch()
@@ -24,6 +25,11 @@ namespace Code.Common.Network
             _cancellationTokenSource = new CancellationTokenSource();
 
             JoinOrCreateMatchmakerGameAsync(_cancellationTokenSource.Token);
+        }
+
+        public int GetMaxPlayersCount()
+        {
+            return _session.MaxPlayers;
         }
 
         public void CancelSerching()
@@ -45,9 +51,7 @@ namespace Code.Common.Network
                 QueueName = "TestArena",
             };
 
-            await MultiplayerService.Instance.MatchmakeSessionAsync(matchOptions, sessionOptions, cancellationToken);
-
-            Debug.LogWarning("Connected!");
+            _session = await MultiplayerService.Instance.MatchmakeSessionAsync(matchOptions, sessionOptions, cancellationToken);
         }
 
         private async Task StartServicesAsync()

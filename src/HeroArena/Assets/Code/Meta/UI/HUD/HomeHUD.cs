@@ -118,7 +118,8 @@ namespace Code.Meta.UI.HUD
 
         private void OnDestroy()
         {
-            NetworkManager.Singleton.OnServerStarted -= EnterNetworkBattleLoadingState;
+            if(NetworkManager.Singleton)
+                NetworkManager.Singleton.OnServerStarted -= EnterNetworkBattleLoadingState;
 
             _trainButton.onClick.RemoveAllListeners();
             _quickMatchButton.onClick.RemoveAllListeners();

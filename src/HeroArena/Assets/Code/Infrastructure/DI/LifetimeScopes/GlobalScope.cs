@@ -45,7 +45,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
             builder.Register<IWindowService, WindowService>(Lifetime.Singleton);
-            builder.Register<INetworkConnectionService, NetworkConnectionService>(Lifetime.Singleton);
+            builder.Register<NetworkService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
 
         private void BindAssetManagementServices(IContainerBuilder builder)

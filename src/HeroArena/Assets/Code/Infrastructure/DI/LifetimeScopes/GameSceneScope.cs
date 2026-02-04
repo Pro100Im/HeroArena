@@ -52,6 +52,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.RegisterInstance(Contexts.sharedInstance.game);
             builder.RegisterInstance(Contexts.sharedInstance.input);
             builder.RegisterInstance(Contexts.sharedInstance.meta);
+            builder.RegisterInstance(Contexts.sharedInstance.network);
         }
 
         private void BindStateFactory(IContainerBuilder builder)

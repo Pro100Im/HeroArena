@@ -24,13 +24,15 @@ public partial class Contexts : Entitas.IContexts {
     public GameContext game { get; set; }
     public InputContext input { get; set; }
     public MetaContext meta { get; set; }
+    public NetworkContext network { get; set; }
 
-    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { game, input, meta }; } }
+    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { game, input, meta, network }; } }
 
     public Contexts() {
         game = new GameContext();
         input = new InputContext();
         meta = new MetaContext();
+        network = new NetworkContext();
 
         var postConstructors = System.Linq.Enumerable.Where(
             GetType().GetMethods(),
@@ -95,6 +97,7 @@ public partial class Contexts {
             CreateContextObserver(game);
             CreateContextObserver(input);
             CreateContextObserver(meta);
+            CreateContextObserver(network);
         } catch(System.Exception e) {
             UnityEngine.Debug.LogError(e);
         }
