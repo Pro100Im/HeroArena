@@ -1,4 +1,5 @@
 using Code.Common.Cameras;
+using Cysharp.Threading.Tasks;
 using Entitas;
 
 namespace Code.Game.Features.Player.Systems
@@ -32,7 +33,7 @@ namespace Code.Game.Features.Player.Systems
 
             while (!_cameraService.HasTarget())
             {
-                await System.Threading.Tasks.Task.Yield();
+                await UniTask.Yield();
 
                 foreach (var player in _players)
                 {

@@ -9,14 +9,26 @@
 public static class NetworkComponentsLookup {
 
     public const int ClientId = 0;
+    public const int EntityReceive = 1;
+    public const int EntityRequestType = 2;
+    public const int EntitySend = 3;
+    public const int OwnerClientId = 4;
 
-    public const int TotalComponents = 1;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
-        "ClientId"
+        "ClientId",
+        "EntityReceive",
+        "EntityRequestType",
+        "EntitySend",
+        "OwnerClientId"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Code.Game.Features.Network.ClientId)
+        typeof(Code.Game.Features.Network.ClientId),
+        typeof(Code.Game.Features.Network.EntityReceive),
+        typeof(Code.Game.Features.Network.EntityRequestType),
+        typeof(Code.Game.Features.Network.EntitySend),
+        typeof(Code.Game.Features.Network.OwnerClientId)
     };
 }

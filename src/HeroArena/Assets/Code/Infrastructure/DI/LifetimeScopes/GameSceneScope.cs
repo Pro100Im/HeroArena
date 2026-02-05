@@ -5,6 +5,8 @@ using Code.Game.Features.Input;
 using Code.Game.Features.Input.Systems;
 using Code.Game.Features.Movement;
 using Code.Game.Features.Movement.Systems;
+using Code.Game.Features.Network;
+using Code.Game.Features.Network.Systems;
 using Code.Game.Features.Player;
 using Code.Game.Features.Player.Factory;
 using Code.Game.Features.Player.Systems;
@@ -89,6 +91,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<GameFeature>(Lifetime.Singleton);
             builder.Register<BindViewFeature>(Lifetime.Singleton);
             builder.Register<InputFeature>(Lifetime.Singleton);
+            builder.Register<NetworkFeature>(Lifetime.Singleton);
             builder.Register<PlayerFeature>(Lifetime.Singleton);
             builder.Register<MovementFeature>(Lifetime.Singleton);
         }
@@ -100,6 +103,9 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
             builder.Register<InitializeInputSystem>(Lifetime.Singleton);
             builder.Register<EmitInputSystem>(Lifetime.Singleton);
+
+            builder.Register<SendComponentRequestSystem>(Lifetime.Singleton);
+            builder.Register<ReceiveComponentRequestSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerSpawnSystem>(Lifetime.Singleton);
             builder.Register<PlayerCameraInitSystem>(Lifetime.Singleton);
