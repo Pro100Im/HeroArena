@@ -11,14 +11,14 @@ public partial class NetworkEntity {
     public Code.Game.Features.Network.EntityRequestType entityRequestType { get { return (Code.Game.Features.Network.EntityRequestType)GetComponent(NetworkComponentsLookup.EntityRequestType); } }
     public bool hasEntityRequestType { get { return HasComponent(NetworkComponentsLookup.EntityRequestType); } }
 
-    public void AddEntityRequestType(Code.Game.Features.Network.RequestType newValue) {
+    public void AddEntityRequestType(Code.Game.Features.Network.RequestTypes newValue) {
         var index = NetworkComponentsLookup.EntityRequestType;
         var component = (Code.Game.Features.Network.EntityRequestType)CreateComponent(index, typeof(Code.Game.Features.Network.EntityRequestType));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceEntityRequestType(Code.Game.Features.Network.RequestType newValue) {
+    public void ReplaceEntityRequestType(Code.Game.Features.Network.RequestTypes newValue) {
         var index = NetworkComponentsLookup.EntityRequestType;
         var component = (Code.Game.Features.Network.EntityRequestType)CreateComponent(index, typeof(Code.Game.Features.Network.EntityRequestType));
         component.Value = newValue;

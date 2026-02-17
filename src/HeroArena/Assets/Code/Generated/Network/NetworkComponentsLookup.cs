@@ -9,26 +9,38 @@
 public static class NetworkComponentsLookup {
 
     public const int ClientId = 0;
-    public const int EntityReceive = 1;
-    public const int EntityRequestType = 2;
-    public const int EntitySend = 3;
-    public const int OwnerClientId = 4;
+    public const int ComponentContext = 1;
+    public const int ComponentId = 2;
+    public const int ComponentTypeName = 3;
+    public const int EntityId = 4;
+    public const int EntityRequestType = 5;
+    public const int OwnerClientId = 6;
+    public const int ReceiveIntValue = 7;
+    public const int SendIntValue = 8;
 
-    public const int TotalComponents = 5;
+    public const int TotalComponents = 9;
 
     public static readonly string[] componentNames = {
         "ClientId",
-        "EntityReceive",
+        "ComponentContext",
+        "ComponentId",
+        "ComponentTypeName",
+        "EntityId",
         "EntityRequestType",
-        "EntitySend",
-        "OwnerClientId"
+        "OwnerClientId",
+        "ReceiveIntValue",
+        "SendIntValue"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Game.Features.Network.ClientId),
-        typeof(Code.Game.Features.Network.EntityReceive),
+        typeof(Code.Game.Features.Network.ComponentContext),
+        typeof(Code.Game.Features.Network.ComponentId),
+        typeof(Code.Game.Features.Network.ComponentTypeName),
+        typeof(Code.Game.Features.Network.EntityId),
         typeof(Code.Game.Features.Network.EntityRequestType),
-        typeof(Code.Game.Features.Network.EntitySend),
-        typeof(Code.Game.Features.Network.OwnerClientId)
+        typeof(Code.Game.Features.Network.OwnerClientId),
+        typeof(Code.Game.Features.Network.ReceiveIntValue),
+        typeof(Code.Game.Features.Network.SendIntValue)
     };
 }
