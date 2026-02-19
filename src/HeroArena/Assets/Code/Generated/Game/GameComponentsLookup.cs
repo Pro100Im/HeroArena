@@ -29,9 +29,10 @@ public static class GameComponentsLookup {
     public const int Speed = 18;
     public const int PlayerAnimator = 19;
     public const int Player = 20;
-    public const int PlayerSpawnRequsted = 21;
+    public const int PlayerId = 21;
+    public const int PlayerSpawnRequsted = 22;
 
-    public const int TotalComponents = 22;
+    public const int TotalComponents = 23;
 
     public static readonly string[] componentNames = {
         "Active",
@@ -55,6 +56,7 @@ public static class GameComponentsLookup {
         "Speed",
         "PlayerAnimator",
         "Player",
+        "PlayerId",
         "PlayerSpawnRequsted"
     };
 
@@ -80,6 +82,7 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Features.Movement.Speed),
         typeof(Code.Game.Features.Player.PlayerAnimatorComponent),
         typeof(Code.Game.Features.Player.PlayerComponent),
+        typeof(Code.Game.Features.Player.PlayerIdComponent),
         typeof(Code.Game.Features.Player.PlayerSpawnRequsted)
     };
 }

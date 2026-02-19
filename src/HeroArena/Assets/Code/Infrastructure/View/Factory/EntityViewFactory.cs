@@ -23,8 +23,6 @@ namespace Code.Infrastructure.View.Factory
 
             _objectResolver.Inject(view);
 
-            view.SetEntity(entity);
-
             return view;
         }
 
@@ -34,9 +32,7 @@ namespace Code.Infrastructure.View.Factory
 
             _objectResolver.Inject(view);
 
-            view.SetEntity(entity);
-
             return view;
         }
     }
-}
+} 

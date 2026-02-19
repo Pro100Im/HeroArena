@@ -98,8 +98,9 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
         private void BindSystems(IContainerBuilder builder)
         {
-            builder.Register<BindEntityViewFromPathSystem>(Lifetime.Singleton);
-            builder.Register<BindEntityViewFromPrefabSystem>(Lifetime.Singleton);
+            builder.Register<CreateEntityViewFromPathSystem>(Lifetime.Singleton);
+            builder.Register<CreateEntityViewFromPrefabSystem>(Lifetime.Singleton);
+            builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
 
             builder.Register<InitializeInputSystem>(Lifetime.Singleton);
             builder.Register<EmitInputSystem>(Lifetime.Singleton);

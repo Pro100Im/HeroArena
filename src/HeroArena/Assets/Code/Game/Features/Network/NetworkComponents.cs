@@ -15,6 +15,7 @@ namespace Code.Game.Features.Network
     public enum RequestTypes
     {
         None,
+        CreatePlayerEntity,
         Add,
         Replace,
         Remove

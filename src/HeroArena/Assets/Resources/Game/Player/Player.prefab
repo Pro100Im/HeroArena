@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3666284892009537564}
   - component: {fileID: 8325538329748404535}
   - component: {fileID: -6567897368112127657}
+  - component: {fileID: -8111894988486680816}
+  - component: {fileID: 3085094240726581637}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -131,6 +133,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Player.Registrars.PlayerLocomotionRegistrar
   EntityView: {fileID: -7261017404258374183}
   _animatorService: {fileID: 5556309700885120373}
+--- !u!114 &-8111894988486680816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597244949361831437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 4124266267
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &3085094240726581637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597244949361831437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkAnimator
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkAnimatorExpanded: 0
+  AuthorityMode: 0
+  m_Animator: {fileID: 6006460847833470714}
+  TransitionStateInfoList: []
+  AnimatorParameterEntries:
+    ParameterEntries:
+    - name: Vertical
+      NameHash: 1358960330
+      Synchronize: 1
+      ParameterType: 1
+    - name: Horizontal
+      NameHash: 475924382
+      Synchronize: 1
+      ParameterType: 1
+  AnimatorParametersExpanded: 0
 --- !u!1001 &5911222763592883418
 PrefabInstance:
   m_ObjectHideFlags: 0

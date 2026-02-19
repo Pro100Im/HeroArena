@@ -13,10 +13,11 @@ namespace Code.Game.Features.Player.Factory
             _identifiers = identifiers;
         }
 
-        public GameEntity CreatePlayer(Vector3 at)
+        public GameEntity CreatePlayer(ulong id)
         {
             var entity = CreateEntity.Empty();
             entity.AddId(_identifiers.Next());
+            entity.AddPlayerId(id);
             entity.AddDirection(Vector2.zero);
             entity.AddSpeed(1f);
             entity.AddMaxSpeed(3f);

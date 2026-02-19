@@ -1,7 +1,6 @@
 using Entitas;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -69,12 +68,6 @@ namespace Code.Game.Features.Network.Systems
                         var componentIndex = request.componentId.Value;
                         var type = Type.GetType(request.componentTypeName.Value);
                         var component = entity.CreateComponent(componentIndex, type);
-                        //var prop = type.GetProperty("Value"); 
-
-                        //if (prop != null)
-                        //{
-                        //    prop.SetValue(component, request.sendIntValue);
-                        //}
 
                         entity.AddComponent(componentIndex, component);
 

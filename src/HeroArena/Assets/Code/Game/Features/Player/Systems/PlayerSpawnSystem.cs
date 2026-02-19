@@ -17,7 +17,8 @@ namespace Code.Game.Features.Player.Systems
             .AllOf(
               GameMatcher.Player,
               GameMatcher.PlayerSpawnRequsted,
-              GameMatcher.View)
+              GameMatcher.View,
+              GameMatcher.PlayerId)
             .Added());
 
         protected override bool Filter(GameEntity entity) => entity.isPlayerSpawnRequsted && entity.hasView;

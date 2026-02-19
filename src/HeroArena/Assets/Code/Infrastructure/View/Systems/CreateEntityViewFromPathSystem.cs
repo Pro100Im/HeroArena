@@ -4,25 +4,30 @@ using Entitas;
 
 namespace Code.Infrastructure.View.Systems
 {
-    public class BindEntityViewFromPrefabSystem : IExecuteSystem
+    public class CreateEntityViewFromPathSystem : IExecuteSystem
     {
         private readonly IEntityViewFactory _entityViewFactory;
         private readonly IGroup<GameEntity> _entities;
         private readonly List<GameEntity> _buffer = new(32);
 
-        public BindEntityViewFromPrefabSystem(GameContext game, IEntityViewFactory entityViewFactory)
+        public CreateEntityViewFromPathSystem(GameContext game, IEntityViewFactory entityViewFactory)
         {
             _entityViewFactory = entityViewFactory;
             _entities = game.GetGroup(GameMatcher
-              .AllOf(GameMatcher.ViewPrefab)
+              .AllOf(GameMatcher.ViewPath)
               .NoneOf(GameMatcher.View));
         }
 
         public void Execute()
         {
-            foreach(GameEntity entity in _entities.GetEntities(_buffer))
+            foreach (GameEntity entity in _entities.GetEntities(_buffer))
             {
-                _entityViewFactory.CreateViewForEntityFromPrefab(entity);
+                _entityViewFactory.CreateViewForEntity(entity);
+            }
+
+            foreach (GameEntity entity in _entities.GetEntities(_buffer))
+            {
+                entity.RemoveViewPath();
             }
         }
     }

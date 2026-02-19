@@ -1,9 +1,11 @@
 ﻿using Code.Common.Network;
 using Code.Common.Transition;
+using Code.Game.Features.Network;
 using Code.Game.Features.Player.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -27,32 +29,65 @@ namespace Code.Infrastructure.States.GameStates
 
         public override void Enter()
         {
+            NetworkManager.Singleton.CustomMessagingManager.RegisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString(), CreatePlayerMessageHandler);
+
             NetworkManager.Singleton.SceneManager.OnSynchronizeComplete += SceneManager_OnSynchronizeComplete;
         }
 
         private void SceneManager_OnSynchronizeComplete(ulong clientId)
         {
-            var totalClients = NetworkManager.Singleton.ConnectedClientsIds.Count;
+            var totalClients = NetworkManager.Singleton.ConnectedClientsList.Count;
 
-            //foreach (var kvp in NetworkManager.Singleton.SpawnManager.SpawnedObjects)
-            //{
-            //    if (kvp.Value.IsPlayerObject)
-            //        Debug.Log($"Игрок → ClientId: {kvp.Value.OwnerClientId},  NetId: {kvp.Value.NetworkObjectId}");
-            //}
-
-            if(totalClients < _networkSessionService.GetMaxPlayersCount())
+            if (totalClients < _networkSessionService.GetMaxPlayersCount()) 
             {
                 Debug.Log($"totalClients {totalClients}");
 
                 return;
             }
 
-            NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SceneManager_OnSynchronizeComplete;
+            if (NetworkManager.Singleton.IsHost)
+            {
+                for (int i = 0; i < totalClients; i++)
+                {
+                    var id = NetworkManager.Singleton.ConnectedClientsList[i].ClientId;
 
-            //var player = _playerFactory.CreatePlayer(Vector3.zero);
+                    // Отправляем сообщение только этому клиенту
+                    NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
+                        RequestTypes.CreatePlayerEntity.ToString(),
+                        NetworkManager.Singleton.ConnectedClientsIds,
+                        SerializePayload(id));
+
+                    Debug.Log($"Отправляем запрос на создание игрока для ClientId: {id}");
+                }
+            }
+
+            NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SceneManager_OnSynchronizeComplete;
 
             _stateMachine.Enter<GameLoopState>();
             _transitionService.Execute(0).AsTask();
+        }
+
+        private void CreatePlayerMessageHandler(ulong senderClientId, FastBufferReader reader)
+        {
+            reader.ReadValueSafe(out ulong playerId);
+
+            _playerFactory.CreatePlayer(playerId);
+        }
+
+        private FastBufferWriter SerializePayload(ulong value)
+        {
+            var totalSize = sizeof(ulong);
+
+            using var writer = new FastBufferWriter(totalSize, Allocator.Temp);
+            writer.WriteValueSafe(value);
+
+            return writer;
+        }
+
+        protected override void Exit()
+        {
+            Debug.Log("Exiting GameEnterState");
+            //NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString());
         }
     }
 }
