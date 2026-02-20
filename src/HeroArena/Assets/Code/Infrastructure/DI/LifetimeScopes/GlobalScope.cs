@@ -10,10 +10,6 @@ using Code.Infrastructure.DI.EntryPoints;
 using Code.Infrastructure.Helpers;
 using Code.Infrastructure.Identifiers;
 using Code.Infrastructure.Loading;
-using Code.Infrastructure.States.Factory;
-using Code.Infrastructure.States.GameStates;
-using Code.Infrastructure.States.StateMachine;
-using Code.Infrastructure.Systems;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -45,6 +41,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
             builder.Register<IWindowService, WindowService>(Lifetime.Singleton);
+
             builder.Register<NetworkService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
 

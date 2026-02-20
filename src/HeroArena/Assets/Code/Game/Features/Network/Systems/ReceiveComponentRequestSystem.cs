@@ -44,7 +44,7 @@ namespace Code.Game.Features.Network.Systems
 
             var entity = _networkContext.CreateEntity();
 
-            entity.AddClientId((int)senderClientId);
+            //entity.AddClientId((int)senderClientId);
             entity.AddEntityId(entityIdValue);
             entity.AddEntityRequestType((RequestTypes)requestTypeValue);
             entity.AddReceiveIntValue(intValue);

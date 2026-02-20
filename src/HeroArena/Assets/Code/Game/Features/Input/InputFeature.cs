@@ -1,5 +1,6 @@
 using Code.Game.Features.Input.Systems;
 using Code.Infrastructure.Systems;
+using Unity.Netcode;
 
 namespace Code.Game.Features.Input
 {
@@ -7,8 +8,15 @@ namespace Code.Game.Features.Input
     {
         public InputFeature(ISystemFactory systemFactory)
         {
-            Add(systemFactory.Create<InitializeInputSystem>());
-            Add(systemFactory.Create<EmitInputSystem>());
+            if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
+            {
+
+            }
+            else
+            {
+                Add(systemFactory.Create<InitializeInputSystem>());
+                Add(systemFactory.Create<EmitInputSystem>());
+            }
         }
     }
 }

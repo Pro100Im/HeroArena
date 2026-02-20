@@ -1,9 +1,6 @@
-using Code.Game.Common;
 using Code.Game.Features;
-using Code.Game.Features.Network;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.Systems;
-using Unity.Netcode;
 
 namespace Code.Infrastructure.States.GameStates
 {
@@ -25,19 +22,6 @@ namespace Code.Infrastructure.States.GameStates
         {
             _gameFeature = _systems.Create<GameFeature>();
             _gameFeature.Initialize();
-
-            //if (NetworkManager.Singleton.IsHost)
-            //{
-            //    var entity = Contexts.sharedInstance.network.CreateEntity();
-
-            //    entity.AddEntityId(entity.creationIndex);
-            //    entity.AddEntityRequestType(RequestTypes.Add);
-            //    entity.AddSendIntValue(10);
-            //    entity.AddClientId(3);
-            //    entity.AddComponentContext(ComponentContexts.Game);
-            //    entity.AddComponentId(GameComponentsLookup.Damage);
-            //    entity.AddComponentTypeName("Code.Game.Common.Damage");
-            //}
         }
 
         public void Update()

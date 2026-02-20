@@ -1,5 +1,6 @@
 using Code.Game.Features.Movement.Systems;
 using Code.Infrastructure.Systems;
+using Unity.Netcode;
 
 namespace Code.Game.Features.Movement
 {
@@ -7,11 +8,16 @@ namespace Code.Game.Features.Movement
     {
         public MovementFeature(ISystemFactory systemFactory)
         {
-            Add(systemFactory.Create<MoveByCharacterControllerSystem>());
+            if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
+            {
 
-            Add(systemFactory.Create<UpdateTransformPositionSystem>());
-
-            Add(systemFactory.Create<RotateAlongDirectionSystem>());
+            }
+            else
+            {
+                Add(systemFactory.Create<MoveByCharacterControllerSystem>());
+                Add(systemFactory.Create<UpdateTransformPositionSystem>());
+                Add(systemFactory.Create<RotateAlongDirectionSystem>());
+            }
         }
     }
 }

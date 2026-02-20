@@ -40,8 +40,11 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             BindGameStates(builder);
             BindStateMachine(builder);
 
-            BindSystems(builder);
             BindFeatures(builder);
+
+            BindServerSystems(builder);
+            BindClientSystems(builder);
+            BindSystems(builder);
 
             BindGameFactories(builder);
 
@@ -89,28 +92,35 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         private void BindFeatures(IContainerBuilder builder)
         {
             builder.Register<GameFeature>(Lifetime.Singleton);
-            builder.Register<BindViewFeature>(Lifetime.Singleton);
-            builder.Register<InputFeature>(Lifetime.Singleton);
             builder.Register<NetworkFeature>(Lifetime.Singleton);
+            builder.Register<CreateViewFeature>(Lifetime.Singleton);
+            builder.Register<InputFeature>(Lifetime.Singleton);
             builder.Register<PlayerFeature>(Lifetime.Singleton);
             builder.Register<MovementFeature>(Lifetime.Singleton);
         }
 
-        private void BindSystems(IContainerBuilder builder)
+        private void BindServerSystems(IContainerBuilder builder)
         {
             builder.Register<CreateEntityViewFromPathSystem>(Lifetime.Singleton);
             builder.Register<CreateEntityViewFromPrefabSystem>(Lifetime.Singleton);
-            builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
 
+            builder.Register<PlayerSpawnSystem>(Lifetime.Singleton);
+            builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
+        }
+
+        private void BindClientSystems(IContainerBuilder builder)
+        {
             builder.Register<InitializeInputSystem>(Lifetime.Singleton);
             builder.Register<EmitInputSystem>(Lifetime.Singleton);
 
-            builder.Register<SendComponentRequestSystem>(Lifetime.Singleton);
-            builder.Register<ReceiveComponentRequestSystem>(Lifetime.Singleton);
-
-            builder.Register<PlayerSpawnSystem>(Lifetime.Singleton);
             builder.Register<PlayerCameraInitSystem>(Lifetime.Singleton);
-            builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
+        }
+
+        private void BindSystems(IContainerBuilder builder)
+        {
+            builder.Register<ObjectIdReceiveSystem>(Lifetime.Singleton);
+            builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
+
             builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
             builder.Register<PlayerSpeedSetupSystem>(Lifetime.Singleton);
 

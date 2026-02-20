@@ -11,10 +11,9 @@ namespace Code.Game.Features
     {
         public GameFeature(ISystemFactory systemFactory)
         {
-            Add(systemFactory.Create<BindViewFeature>());
-
-            Add(systemFactory.Create<InputFeature>());
+            Add(systemFactory.Create<CreateViewFeature>());
             Add(systemFactory.Create<NetworkFeature>());
+            Add(systemFactory.Create<InputFeature>());
             Add(systemFactory.Create<PlayerFeature>());
             Add(systemFactory.Create<MovementFeature>());
         }

@@ -4,16 +4,21 @@ using Unity.Netcode;
 
 namespace Code.Infrastructure.View
 {
-    public sealed class BindViewFeature : Feature
+    public sealed class CreateViewFeature : Feature
     {
-        public BindViewFeature(ISystemFactory systems)
+        public CreateViewFeature(ISystemFactory systems)
         {
-            if (NetworkManager.Singleton.IsHost)
+            if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
                 Add(systems.Create<CreateEntityViewFromPathSystem>());
                 Add(systems.Create<CreateEntityViewFromPrefabSystem>());
-                Add(systems.Create<PlayerCharacterLinkSystem>());
             }
+            else
+            {
+                
+            }
+
+            Add(systems.Create<PlayerCharacterLinkSystem>());
         }
     }
 }

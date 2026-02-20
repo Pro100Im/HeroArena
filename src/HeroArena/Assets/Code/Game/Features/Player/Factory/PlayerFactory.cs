@@ -17,7 +17,7 @@ namespace Code.Game.Features.Player.Factory
         {
             var entity = CreateEntity.Empty();
             entity.AddId(_identifiers.Next());
-            entity.AddPlayerId(id);
+            entity.AddClientId(id);
             entity.AddDirection(Vector2.zero);
             entity.AddSpeed(1f);
             entity.AddMaxSpeed(3f);

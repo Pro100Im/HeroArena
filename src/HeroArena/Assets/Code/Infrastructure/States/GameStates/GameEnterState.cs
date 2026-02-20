@@ -51,7 +51,6 @@ namespace Code.Infrastructure.States.GameStates
                 {
                     var id = NetworkManager.Singleton.ConnectedClientsList[i].ClientId;
 
-                    // Отправляем сообщение только этому клиенту
                     NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
                         RequestTypes.CreatePlayerEntity.ToString(),
                         NetworkManager.Singleton.ConnectedClientsIds,

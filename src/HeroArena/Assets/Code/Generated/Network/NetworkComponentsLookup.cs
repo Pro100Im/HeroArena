@@ -14,7 +14,7 @@ public static class NetworkComponentsLookup {
     public const int ComponentTypeName = 3;
     public const int EntityId = 4;
     public const int EntityRequestType = 5;
-    public const int OwnerClientId = 6;
+    public const int ObjectId = 6;
     public const int ReceiveIntValue = 7;
     public const int SendIntValue = 8;
 
@@ -27,7 +27,7 @@ public static class NetworkComponentsLookup {
         "ComponentTypeName",
         "EntityId",
         "EntityRequestType",
-        "OwnerClientId",
+        "ObjectId",
         "ReceiveIntValue",
         "SendIntValue"
     };
@@ -39,7 +39,7 @@ public static class NetworkComponentsLookup {
         typeof(Code.Game.Features.Network.ComponentTypeName),
         typeof(Code.Game.Features.Network.EntityId),
         typeof(Code.Game.Features.Network.EntityRequestType),
-        typeof(Code.Game.Features.Network.OwnerClientId),
+        typeof(Code.Game.Features.Network.ObjectId),
         typeof(Code.Game.Features.Network.ReceiveIntValue),
         typeof(Code.Game.Features.Network.SendIntValue)
     };

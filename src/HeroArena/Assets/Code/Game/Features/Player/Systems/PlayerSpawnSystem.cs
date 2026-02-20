@@ -1,4 +1,3 @@
-using Code.Game.Features.Movement;
 using Entitas;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace Code.Game.Features.Player.Systems
               GameMatcher.Player,
               GameMatcher.PlayerSpawnRequsted,
               GameMatcher.View,
-              GameMatcher.PlayerId)
+              GameMatcher.ClientId)
             .Added());
 
         protected override bool Filter(GameEntity entity) => entity.isPlayerSpawnRequsted && entity.hasView;

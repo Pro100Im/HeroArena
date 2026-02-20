@@ -2,31 +2,27 @@ using Code.Infrastructure.View;
 using Entitas;
 using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
 
-public class PlayerCharacterLinkSystem : ReactiveSystem<GameEntity>
+public class PlayerCharacterLinkSystem : IExecuteSystem
 {
-    public PlayerCharacterLinkSystem(GameContext game) : base(game)
-    {
+    private readonly IGroup<GameEntity> _entities;
+    private readonly List<GameEntity> _buffer = new(32);
 
+    public PlayerCharacterLinkSystem(GameContext game)
+    {
+        _entities = game.GetGroup(GameMatcher
+         .AllOf(
+            GameMatcher.Player,
+            GameMatcher.ObjectId
+            )
+         .NoneOf(GameMatcher.View));
     }
 
-    protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
-      context.CreateCollector(GameMatcher
-        .AllOf(
-          GameMatcher.Player,
-          GameMatcher.PlayerId)
-        .NoneOf(
-          GameMatcher.View)
-        .Added());
-
-    protected override bool Filter(GameEntity entity) => entity.isPlayerSpawnRequsted && entity.hasView;
-
-    protected override void Execute(List<GameEntity> players)
+    public void Execute()
     {
-        foreach (GameEntity entity in players)
+        foreach (GameEntity entity in _entities.GetEntities(_buffer))
         {
-            var netObj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[entity.playerId.Value]; 
+            var netObj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[entity.objectId.Value]; 
             var view = netObj.GetComponent<EntityBehaviour>(); 
 
             view.SetEntity(entity);

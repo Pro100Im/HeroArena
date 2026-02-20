@@ -2,10 +2,12 @@ using Entitas;
 
 namespace Code.Game.Features.Network
 {
-    [Network] public class ClientId : IComponent { public int Value; }
-    [Network] public class OwnerClientId : IComponent { public int Value; }
-    [Network] public class EntityId : IComponent { public int Value; }
+    [Network][Game] public class ClientId : IComponent { public ulong Value; }
+    [Network][Game] public class ObjectId : IComponent { public ulong Value; }
+
     [Network] public class EntityRequestType : IComponent { public RequestTypes Value; }
+
+    [Network] public class EntityId : IComponent { public int Value; }
     [Network] public class SendIntValue : IComponent { public int Value; }
     [Network] public class ReceiveIntValue : IComponent { public int Value; }
     [Network] public class ComponentContext : IComponent { public ComponentContexts Value; }
@@ -16,6 +18,7 @@ namespace Code.Game.Features.Network
     {
         None,
         CreatePlayerEntity,
+        ReceiveObjectId,
         Add,
         Replace,
         Remove

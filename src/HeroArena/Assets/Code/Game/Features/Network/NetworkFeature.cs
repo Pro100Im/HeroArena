@@ -7,8 +7,7 @@ namespace Code.Game.Features.Network
     {
         public NetworkFeature(ISystemFactory systems)
         {
-            Add(systems.Create<SendComponentRequestSystem>());
-            Add(systems.Create<ReceiveComponentRequestSystem>());
+            Add(systems.Create<ObjectIdReceiveSystem>());
         }
     }
 }
