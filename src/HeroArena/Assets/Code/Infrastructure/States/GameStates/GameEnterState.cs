@@ -5,6 +5,7 @@ using Code.Game.Features.Player.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
+using Entitas;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -16,15 +17,18 @@ namespace Code.Infrastructure.States.GameStates
         private readonly IGameStateMachine _stateMachine;
         private readonly IPlayerFactory _playerFactory;
         private readonly INetworkSessionService _networkSessionService;
+        private readonly IGroup<GameEntity> _entities;
 
         private readonly TransitionService _transitionService;
 
-        public GameEnterState(IGameStateMachine stateMachine, IPlayerFactory playerFactory, INetworkSessionService networkSessionService, TransitionService transitionService)
+        public GameEnterState(IGameStateMachine stateMachine, IPlayerFactory playerFactory, INetworkSessionService networkSessionService, TransitionService transitionService, GameContext game)
         {
             _stateMachine = stateMachine;
             _playerFactory = playerFactory;
             _networkSessionService = networkSessionService;
             _transitionService = transitionService;
+
+            _entities = game.GetGroup(GameMatcher.AllOf(GameMatcher.ClientId));
         }
 
         public override void Enter()
@@ -55,15 +59,8 @@ namespace Code.Infrastructure.States.GameStates
                         RequestTypes.CreatePlayerEntity.ToString(),
                         NetworkManager.Singleton.ConnectedClientsIds,
                         SerializePayload(id));
-
-                    Debug.Log($"Отправляем запрос на создание игрока для ClientId: {id}");
                 }
             }
-
-            NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SceneManager_OnSynchronizeComplete;
-
-            _stateMachine.Enter<GameLoopState>();
-            _transitionService.Execute(0).AsTask();
         }
 
         private void CreatePlayerMessageHandler(ulong senderClientId, FastBufferReader reader)
@@ -71,6 +68,15 @@ namespace Code.Infrastructure.States.GameStates
             reader.ReadValueSafe(out ulong playerId);
 
             _playerFactory.CreatePlayer(playerId);
+
+            if(_entities.count >= NetworkManager.Singleton.ConnectedClientsList.Count)
+            {
+                NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SceneManager_OnSynchronizeComplete;
+                NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString());
+
+                _stateMachine.Enter<GameLoopState>();
+                _transitionService.Execute(0).AsTask();
+            }
         }
 
         private FastBufferWriter SerializePayload(ulong value)
@@ -83,10 +89,9 @@ namespace Code.Infrastructure.States.GameStates
             return writer;
         }
 
-        protected override void Exit()
-        {
-            Debug.Log("Exiting GameEnterState");
-            //NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString());
-        }
+        //protected override void Exit()
+        //{
+        //    Debug.Log("Exiting GameEnterState");
+        //}
     }
 }
