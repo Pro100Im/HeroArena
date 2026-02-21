@@ -23,9 +23,7 @@ namespace Code.Game.Features.Player.Factory
             entity.AddMaxSpeed(3f);
             entity.AddCurrentSpeed(0f);
             entity.AddViewPath("Game/Player/Player");
-            entity.isPlayerSpawnRequsted = true;
             entity.isPlayer = true;
-            entity.isRotationAlignedAlongDirection = true;
 
             return entity;
         }

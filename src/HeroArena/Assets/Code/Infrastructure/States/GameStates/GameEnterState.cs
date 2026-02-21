@@ -6,8 +6,6 @@ using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using System;
-using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -55,7 +53,7 @@ namespace Code.Infrastructure.States.GameStates
                 for (int i = 0; i < totalClients; i++)
                 {
                     var id = NetworkManager.Singleton.ConnectedClientsList[i].ClientId;
-                    var totalSize = UnsafeUtility.SizeOf<ulong>();
+                    var totalSize = sizeof(ulong);
                     using var builder = new NetworkMessageBuilder(totalSize);
                     var writer = builder.Write(id).Build();
 
