@@ -1,6 +1,7 @@
+using Code.Common.Network;
 using Code.Game.Features.Network;
 using Code.Infrastructure.AssetManagement;
-using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 using VContainer;
@@ -27,10 +28,14 @@ namespace Code.Infrastructure.View.Factory
 
             networkObject.SpawnWithOwnership(entity.clientId.Value);
 
+            var totalSize = UnsafeUtility.SizeOf<ulong>() + UnsafeUtility.SizeOf<ulong>();
+            using var builder = new NetworkMessageBuilder(totalSize);
+            var writer = builder.Write(networkObject.OwnerClientId).Write(networkObject.NetworkObjectId).Build(); 
+
             NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
                        RequestTypes.ReceiveObjectId.ToString(),
                        NetworkManager.Singleton.ConnectedClientsIds,
-                       SerializePayload(networkObject.OwnerClientId, networkObject.NetworkObjectId));
+                       writer);
 
             _objectResolver.Inject(view);
 
@@ -45,17 +50,6 @@ namespace Code.Infrastructure.View.Factory
             _objectResolver.Inject(view);
 
             return view;
-        }
-
-        private FastBufferWriter SerializePayload(ulong key, ulong value)
-        {
-            var totalSize = sizeof(ulong) + sizeof(ulong);
-
-            using var writer = new FastBufferWriter(totalSize, Allocator.Temp);
-            writer.WriteValueSafe(key);
-            writer.WriteValueSafe(value);
-
-            return writer;
         }
     }
 } 

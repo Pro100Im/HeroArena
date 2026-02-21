@@ -6,7 +6,8 @@ using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using Cysharp.Threading.Tasks;
 using Entitas;
-using Unity.Collections;
+using System;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -21,7 +22,8 @@ namespace Code.Infrastructure.States.GameStates
 
         private readonly TransitionService _transitionService;
 
-        public GameEnterState(IGameStateMachine stateMachine, IPlayerFactory playerFactory, INetworkSessionService networkSessionService, TransitionService transitionService, GameContext game)
+        public GameEnterState(IGameStateMachine stateMachine, IPlayerFactory playerFactory, INetworkSessionService networkSessionService, TransitionService transitionService, 
+            GameContext game)
         {
             _stateMachine = stateMachine;
             _playerFactory = playerFactory;
@@ -34,7 +36,6 @@ namespace Code.Infrastructure.States.GameStates
         public override void Enter()
         {
             NetworkManager.Singleton.CustomMessagingManager.RegisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString(), CreatePlayerMessageHandler);
-
             NetworkManager.Singleton.SceneManager.OnSynchronizeComplete += SceneManager_OnSynchronizeComplete;
         }
 
@@ -54,11 +55,14 @@ namespace Code.Infrastructure.States.GameStates
                 for (int i = 0; i < totalClients; i++)
                 {
                     var id = NetworkManager.Singleton.ConnectedClientsList[i].ClientId;
+                    var totalSize = UnsafeUtility.SizeOf<ulong>();
+                    using var builder = new NetworkMessageBuilder(totalSize);
+                    var writer = builder.Write(id).Build();
 
                     NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
                         RequestTypes.CreatePlayerEntity.ToString(),
                         NetworkManager.Singleton.ConnectedClientsIds,
-                        SerializePayload(id));
+                        writer);
                 }
             }
         }
@@ -78,20 +82,5 @@ namespace Code.Infrastructure.States.GameStates
                 _transitionService.Execute(0).AsTask();
             }
         }
-
-        private FastBufferWriter SerializePayload(ulong value)
-        {
-            var totalSize = sizeof(ulong);
-
-            using var writer = new FastBufferWriter(totalSize, Allocator.Temp);
-            writer.WriteValueSafe(value);
-
-            return writer;
-        }
-
-        //protected override void Exit()
-        //{
-        //    Debug.Log("Exiting GameEnterState");
-        //}
     }
 }
