@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6644148913313555822, guid: 16feea5288757284aaaf906201063180, type: 3}
       propertyPath: m_Name
-      value: HUD
+      value: MainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -170,6 +170,10 @@ PrefabInstance:
     - target: {fileID: 6557691044038864976, guid: 1d05d44f752e975419a15430415307f3, type: 3}
       propertyPath: m_Name
       value: TransitionService
+      objectReference: {fileID: 0}
+    - target: {fileID: 6557691044038864976, guid: 1d05d44f752e975419a15430415307f3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6651323008921792405, guid: 1d05d44f752e975419a15430415307f3, type: 3}
       propertyPath: m_Pivot.x
