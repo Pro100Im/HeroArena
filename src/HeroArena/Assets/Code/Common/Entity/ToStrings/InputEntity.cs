@@ -7,40 +7,22 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public sealed partial class InputEntity : INamedEntity
 {
-  private EntityPrinter _printer;
+    private EntityPrinter _printer;
 
-  public override string ToString()
-  {
-    if (_printer == null)
-      _printer = new EntityPrinter(this);
-
-    _printer.InvalidateCache();
-
-    return _printer.BuildToString();
-  }
-
-  public string EntityName(IComponent[] components)
-  {
-    try
+    public override string ToString()
     {
-      if (components.Length == 1)
-        return components[0].GetType().Name;
+        if (_printer == null)
+            _printer = new EntityPrinter(this);
 
-      foreach (IComponent component in components)
-      {
-        switch (component.GetType().Name)
-        {
-          
-        }
-      }
-    }
-    catch (Exception exception)
-    {
-      Debug.LogError(exception.Message);
+        _printer.InvalidateCache();
+
+        return _printer.BuildToString();
     }
 
-    return components.First().GetType().Name;
-  }
-  
-  public string BaseToString() => base.ToString();
+    public string EntityName(IComponent[] components)
+    {
+        return components.FirstOrDefault().GetType().Name;
+    }
+
+    public string BaseToString() => base.ToString();
 }

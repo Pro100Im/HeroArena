@@ -1,63 +1,50 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using Code.Common.Entity.ToStrings;
+using Code.Game.Features.Player;
 using Entitas;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-public sealed partial class GameEntity /*: INamedEntity*/
+public sealed partial class GameEntity : INamedEntity
 {
     private EntityPrinter _printer;
 
-    //public override string ToString()
-    //{
-    //    if(_printer == null)
-    //        _printer = new EntityPrinter(this);
+    public override string ToString()
+    {
+        if (_printer == null)
+            _printer = new EntityPrinter(this);
 
-    //    _printer.InvalidateCache();
+        _printer.InvalidateCache();
 
-    //    return _printer.BuildToString();
-    //}
+        return _printer.BuildToString();
+    }
 
-    //public string EntityName(IComponent[] components)
-    //{
-    //    try
-    //    {
-    //        if(components.Length == 1)
-    //            return components[0].GetType().Name;
+    public string EntityName(IComponent[] components)
+    {
+        try
+        {
+            if (components.Length == 1)
+                return components[0].GetType().Name;
 
-    //        foreach(IComponent component in components)
-    //        {
-    //            switch(component.GetType().Name)
-    //            {
-    //                case nameof(Hero):
-    //                    return PrintHero();
+            foreach (IComponent component in components)
+            {
+                var entityName = component.GetType().Name;
 
-    //                case nameof(Enemy):
-    //                    return PrintEnemy();
-    //            }
-    //        }
-    //    }
-    //    catch(Exception exception)
-    //    {
-    //        Debug.LogError(exception.Message);
-    //    }
+                switch (component.GetType().Name)
+                {
+                    case nameof(PlayerComponent):
+                        return entityName;
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError(exception.Message);
+        }
 
-    //    return components.First().GetType().Name;
-    //}
-
-    //private string PrintHero()
-    //{
-    //    return new StringBuilder($"Hero ")
-    //      .With(s => s.Append($"Id:{id.Value}"), when: hasId)
-    //      .ToString();
-    //}
-
-    //private string PrintEnemy() =>
-    //  new StringBuilder($"Enemy ")
-    //    .With(s => s.Append($"Id:{id.Value}"), when: hasId)
-    //    .ToString();
+        return components.First().GetType().Name;
+    }
 
     public string BaseToString() => base.ToString();
 }
