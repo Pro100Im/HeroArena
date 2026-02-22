@@ -5,6 +5,7 @@ using VContainer;
 
 namespace Code.Infrastructure.View
 {
+    [RequireComponent(typeof(EntityBehaviour))]
     public class SelfInitializeEntityView : MonoBehaviour
     {
         [SerializeField] private EntityBehaviour _entityBehaviour;
@@ -15,6 +16,12 @@ namespace Code.Infrastructure.View
         private void Construct(IIdentifierService identifierService)
         {
             _identifierService = identifierService;
+        }
+
+        private void OnValidate()
+        {
+            if (!_entityBehaviour)
+                _entityBehaviour = GetComponent<EntityBehaviour>();
         }
 
         private void Awake()

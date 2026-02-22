@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Game.Features.Spawn.SpawnComponents.SpawnRequsted spawnRequstedComponent = new Code.Game.Features.Spawn.SpawnComponents.SpawnRequsted();
+    static readonly Code.Game.Features.Spawn.SpawnComponents.FreePoint freePointComponent = new Code.Game.Features.Spawn.SpawnComponents.FreePoint();
 
-    public bool isSpawnRequsted {
-        get { return HasComponent(GameComponentsLookup.SpawnRequsted); }
+    public bool isFreePoint {
+        get { return HasComponent(GameComponentsLookup.FreePoint); }
         set {
-            if (value != isSpawnRequsted) {
-                var index = GameComponentsLookup.SpawnRequsted;
+            if (value != isFreePoint) {
+                var index = GameComponentsLookup.FreePoint;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : spawnRequstedComponent;
+                            : freePointComponent;
 
                     AddComponent(index, component);
                 } else {
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSpawnRequsted;
+    static Entitas.IMatcher<GameEntity> _matcherFreePoint;
 
-    public static Entitas.IMatcher<GameEntity> SpawnRequsted {
+    public static Entitas.IMatcher<GameEntity> FreePoint {
         get {
-            if (_matcherSpawnRequsted == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.SpawnRequsted);
+            if (_matcherFreePoint == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.FreePoint);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSpawnRequsted = matcher;
+                _matcherFreePoint = matcher;
             }
 
-            return _matcherSpawnRequsted;
+            return _matcherFreePoint;
         }
     }
 }

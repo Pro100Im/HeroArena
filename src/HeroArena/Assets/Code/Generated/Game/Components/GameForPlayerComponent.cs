@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Game.Features.Spawn.SpawnComponents.SpawnRequsted spawnRequstedComponent = new Code.Game.Features.Spawn.SpawnComponents.SpawnRequsted();
+    static readonly Code.Game.Features.Spawn.SpawnComponents.ForPlayer forPlayerComponent = new Code.Game.Features.Spawn.SpawnComponents.ForPlayer();
 
-    public bool isSpawnRequsted {
-        get { return HasComponent(GameComponentsLookup.SpawnRequsted); }
+    public bool isForPlayer {
+        get { return HasComponent(GameComponentsLookup.ForPlayer); }
         set {
-            if (value != isSpawnRequsted) {
-                var index = GameComponentsLookup.SpawnRequsted;
+            if (value != isForPlayer) {
+                var index = GameComponentsLookup.ForPlayer;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : spawnRequstedComponent;
+                            : forPlayerComponent;
 
                     AddComponent(index, component);
                 } else {
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSpawnRequsted;
+    static Entitas.IMatcher<GameEntity> _matcherForPlayer;
 
-    public static Entitas.IMatcher<GameEntity> SpawnRequsted {
+    public static Entitas.IMatcher<GameEntity> ForPlayer {
         get {
-            if (_matcherSpawnRequsted == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.SpawnRequsted);
+            if (_matcherForPlayer == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ForPlayer);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSpawnRequsted = matcher;
+                _matcherForPlayer = matcher;
             }
 
-            return _matcherSpawnRequsted;
+            return _matcherForPlayer;
         }
     }
 }

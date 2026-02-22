@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Game.Common.WaitingToSpawn waitingToSpawnComponent = new Code.Game.Common.WaitingToSpawn();
+    static readonly Code.Game.Features.Spawn.SpawnComponents.WaitingToSpawn waitingToSpawnComponent = new Code.Game.Features.Spawn.SpawnComponents.WaitingToSpawn();
 
     public bool isWaitingToSpawn {
         get { return HasComponent(GameComponentsLookup.WaitingToSpawn); }

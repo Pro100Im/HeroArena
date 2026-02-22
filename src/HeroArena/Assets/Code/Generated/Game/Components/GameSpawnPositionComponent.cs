@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Game.Common.SpawnPosition spawnPosition { get { return (Code.Game.Common.SpawnPosition)GetComponent(GameComponentsLookup.SpawnPosition); } }
+    public Code.Game.Features.Spawn.SpawnComponents.SpawnPosition spawnPosition { get { return (Code.Game.Features.Spawn.SpawnComponents.SpawnPosition)GetComponent(GameComponentsLookup.SpawnPosition); } }
     public bool hasSpawnPosition { get { return HasComponent(GameComponentsLookup.SpawnPosition); } }
 
     public void AddSpawnPosition(UnityEngine.Vector3 newValue) {
         var index = GameComponentsLookup.SpawnPosition;
-        var component = (Code.Game.Common.SpawnPosition)CreateComponent(index, typeof(Code.Game.Common.SpawnPosition));
+        var component = (Code.Game.Features.Spawn.SpawnComponents.SpawnPosition)CreateComponent(index, typeof(Code.Game.Features.Spawn.SpawnComponents.SpawnPosition));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceSpawnPosition(UnityEngine.Vector3 newValue) {
         var index = GameComponentsLookup.SpawnPosition;
-        var component = (Code.Game.Common.SpawnPosition)CreateComponent(index, typeof(Code.Game.Common.SpawnPosition));
+        var component = (Code.Game.Features.Spawn.SpawnComponents.SpawnPosition)CreateComponent(index, typeof(Code.Game.Features.Spawn.SpawnComponents.SpawnPosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }

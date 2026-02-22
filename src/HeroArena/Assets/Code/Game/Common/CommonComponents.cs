@@ -13,11 +13,6 @@ namespace Code.Game.Common
     [Game] public class TransformComponent : IComponent { public Transform Value; }
     [Game] public class CharacterControllerComponent : IComponent { public CharacterController Value; }
 
-    [Game] public class SpawnRequsted : IComponent { }
-    [Game] public class WaitingToSpawn : IComponent { }
-    [Game] public class SpawnPosition : IComponent { public Vector3 Value; }
-
-
     [Game] public class View : IComponent { public IEntityView Value; }
     [Game] public class ViewPath : IComponent { public string Value; }
     [Game] public class ViewPrefab : IComponent { public EntityBehaviour Value; }

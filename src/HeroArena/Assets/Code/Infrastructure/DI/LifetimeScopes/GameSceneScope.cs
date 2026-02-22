@@ -11,6 +11,7 @@ using Code.Game.Features.Network.Systems;
 using Code.Game.Features.Player;
 using Code.Game.Features.Player.Factory;
 using Code.Game.Features.Player.Systems;
+using Code.Game.Features.Spawn;
 using Code.Game.Input.Service;
 using Code.Infrastructure.DI.EntryPoints;
 using Code.Infrastructure.Identifiers;
@@ -93,8 +94,10 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         private void BindFeatures(IContainerBuilder builder)
         {
             builder.Register<GameFeature>(Lifetime.Singleton);
-            builder.Register<NetworkFeature>(Lifetime.Singleton);
+
             builder.Register<CreateViewFeature>(Lifetime.Singleton);
+            builder.Register<NetworkFeature>(Lifetime.Singleton);
+            builder.Register<SpawnFeature>(Lifetime.Singleton);
             builder.Register<InputFeature>(Lifetime.Singleton);
             builder.Register<PlayerFeature>(Lifetime.Singleton);
             builder.Register<MovementFeature>(Lifetime.Singleton);
