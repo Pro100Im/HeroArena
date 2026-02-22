@@ -1,6 +1,7 @@
 using Code.Common.Cameras;
 using Cysharp.Threading.Tasks;
 using Entitas;
+using Unity.Netcode;
 
 namespace Code.Game.Features.Player.Systems
 {
@@ -29,6 +30,7 @@ namespace Code.Game.Features.Player.Systems
             _players = _gameContext.GetGroup(GameMatcher
                 .AllOf(
                 GameMatcher.Player,
+                GameMatcher.ClientId,
                 GameMatcher.Transform));
 
             while (!_cameraService.HasTarget())
@@ -37,7 +39,12 @@ namespace Code.Game.Features.Player.Systems
 
                 foreach (var player in _players)
                 {
-                    _cameraService.SetTarget(player.transform.Value);
+                    if(NetworkManager.Singleton.LocalClientId == player.clientId.Value)
+                    {
+                        _cameraService.SetTarget(player.transform.Value);
+
+                        break;
+                    }
                 }
             }
         }
