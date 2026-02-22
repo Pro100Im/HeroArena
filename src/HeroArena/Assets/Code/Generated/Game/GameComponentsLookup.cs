@@ -14,26 +14,27 @@ public static class GameComponentsLookup {
     public const int Destructed = 3;
     public const int Id = 4;
     public const int SelfDestructTimer = 5;
-    public const int SpriteRenderer = 6;
-    public const int Transform = 7;
-    public const int View = 8;
-    public const int ViewPath = 9;
-    public const int ViewPrefab = 10;
-    public const int WorldPosition = 11;
-    public const int CurrentSpeed = 12;
-    public const int Direction = 13;
-    public const int MaxSpeed = 14;
-    public const int MovementAvailable = 15;
-    public const int Moving = 16;
-    public const int RotationAlignedAlongDirection = 17;
-    public const int Speed = 18;
-    public const int ClientId = 19;
-    public const int ObjectId = 20;
-    public const int PlayerAnimator = 21;
-    public const int Player = 22;
-    public const int PlayerSpawnRequsted = 23;
+    public const int SpawnPosition = 6;
+    public const int SpawnRequsted = 7;
+    public const int Transform = 8;
+    public const int View = 9;
+    public const int ViewPath = 10;
+    public const int ViewPrefab = 11;
+    public const int WaitingToSpawn = 12;
+    public const int WorldPosition = 13;
+    public const int CurrentSpeed = 14;
+    public const int Direction = 15;
+    public const int MaxSpeed = 16;
+    public const int MovementAvailable = 17;
+    public const int Moving = 18;
+    public const int RotationAlignedAlongDirection = 19;
+    public const int Speed = 20;
+    public const int ClientId = 21;
+    public const int ObjectId = 22;
+    public const int PlayerAnimator = 23;
+    public const int Player = 24;
 
-    public const int TotalComponents = 24;
+    public const int TotalComponents = 25;
 
     public static readonly string[] componentNames = {
         "Active",
@@ -42,11 +43,13 @@ public static class GameComponentsLookup {
         "Destructed",
         "Id",
         "SelfDestructTimer",
-        "SpriteRenderer",
+        "SpawnPosition",
+        "SpawnRequsted",
         "Transform",
         "View",
         "ViewPath",
         "ViewPrefab",
+        "WaitingToSpawn",
         "WorldPosition",
         "CurrentSpeed",
         "Direction",
@@ -58,8 +61,7 @@ public static class GameComponentsLookup {
         "ClientId",
         "ObjectId",
         "PlayerAnimator",
-        "Player",
-        "PlayerSpawnRequsted"
+        "Player"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -69,11 +71,13 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Common.Destructed),
         typeof(Code.Game.Common.Id),
         typeof(Code.Game.Common.SelfDestructTimer),
-        typeof(Code.Game.Common.SpriteRendererComponent),
+        typeof(Code.Game.Common.SpawnPosition),
+        typeof(Code.Game.Common.SpawnRequsted),
         typeof(Code.Game.Common.TransformComponent),
         typeof(Code.Game.Common.View),
         typeof(Code.Game.Common.ViewPath),
         typeof(Code.Game.Common.ViewPrefab),
+        typeof(Code.Game.Common.WaitingToSpawn),
         typeof(Code.Game.Common.WorldPosition),
         typeof(Code.Game.Features.Movement.CurrentSpeed),
         typeof(Code.Game.Features.Movement.Direction),
@@ -85,7 +89,6 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Features.Network.ClientId),
         typeof(Code.Game.Features.Network.ObjectId),
         typeof(Code.Game.Features.Player.PlayerAnimatorComponent),
-        typeof(Code.Game.Features.Player.PlayerComponent),
-        typeof(Code.Game.Features.Player.PlayerSpawnRequsted)
+        typeof(Code.Game.Features.Player.PlayerComponent)
     };
 }

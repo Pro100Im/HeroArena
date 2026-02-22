@@ -12,7 +12,8 @@ namespace Code.Game.Features.Movement
             {
 
             }
-            else
+
+            if (NetworkManager.Singleton.IsClient)
             {
                 Add(systemFactory.Create<MoveByCharacterControllerSystem>());
                 Add(systemFactory.Create<UpdateTransformPositionSystem>());

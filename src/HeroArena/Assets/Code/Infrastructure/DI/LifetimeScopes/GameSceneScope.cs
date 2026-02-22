@@ -105,7 +105,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<CreateEntityViewFromPathSystem>(Lifetime.Singleton);
             builder.Register<CreateEntityViewFromPrefabSystem>(Lifetime.Singleton);
 
-            builder.Register<PlayerSpawnSystem>(Lifetime.Singleton);
+            builder.Register<SelectPlayerSpawnPositionSystem>(Lifetime.Singleton);
             builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
         }
 
@@ -121,6 +121,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         {
             builder.Register<ObjectIdReceiveSystem>(Lifetime.Singleton);
             builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
+            builder.Register<SetPlayerSpawnedPositionSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
             builder.Register<PlayerSpeedSetupSystem>(Lifetime.Singleton);

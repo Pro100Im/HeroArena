@@ -16,7 +16,7 @@ namespace Code.Game.Features.Network.Systems
             _requests = networkContext
                 .GetGroup(NetworkMatcher
                 .AllOf(
-                    NetworkMatcher.ClientId,
+                    //NetworkMatcher.ClientId,
                     NetworkMatcher.EntityId,
                     NetworkMatcher.EntityRequestType,
                     NetworkMatcher.SendIntValue,

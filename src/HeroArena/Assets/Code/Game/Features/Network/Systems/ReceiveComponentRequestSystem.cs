@@ -18,7 +18,7 @@ namespace Code.Game.Features.Network.Systems
             _requests = networkContext
                 .GetGroup(NetworkMatcher
                 .AllOf(
-                    NetworkMatcher.ClientId,
+                    //NetworkMatcher.ClientId,
                     NetworkMatcher.EntityId,
                     NetworkMatcher.EntityRequestType,
                     NetworkMatcher.ReceiveIntValue,
@@ -62,7 +62,7 @@ namespace Code.Game.Features.Network.Systems
                 switch (request.entityRequestType.Value)
                 {
                     case RequestTypes.Add:
-                        Debug.Log($"Processing Add request from client {request.clientId.Value} for entity {request.entityId.Value}");
+                        //Debug.Log($"Processing Add request from client {request.clientId.Value} for entity {request.entityId.Value}");
 
                         var entity = Contexts.sharedInstance.game.CreateEntity();
                         var componentIndex = request.componentId.Value;

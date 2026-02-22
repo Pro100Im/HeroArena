@@ -13,7 +13,8 @@ namespace Code.Infrastructure.View
                 Add(systems.Create<CreateEntityViewFromPathSystem>());
                 Add(systems.Create<CreateEntityViewFromPrefabSystem>());
             }
-            else
+
+            if (NetworkManager.Singleton.IsClient)
             {
                 
             }

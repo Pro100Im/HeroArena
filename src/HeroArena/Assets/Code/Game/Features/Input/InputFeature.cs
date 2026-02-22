@@ -12,7 +12,8 @@ namespace Code.Game.Features.Input
             {
 
             }
-            else
+
+            if (NetworkManager.Singleton.IsClient)
             {
                 Add(systemFactory.Create<InitializeInputSystem>());
                 Add(systemFactory.Create<EmitInputSystem>());

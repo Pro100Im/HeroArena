@@ -19,6 +19,7 @@ namespace Code.Game.Features.Network
         None,
         CreatePlayerEntity,
         ReceiveObjectId,
+        ReceiveSpawnPosition,
         Add,
         Replace,
         Remove

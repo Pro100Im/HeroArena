@@ -10,14 +10,16 @@ namespace Code.Game.Features.Player
         {
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
-                Add(systemFactory.Create<PlayerSpawnSystem>());
+                Add(systemFactory.Create<SelectPlayerSpawnPositionSystem>());
                 Add(systemFactory.Create<PlayerAnimatorSystem>());
             }
-            else
+
+            if(NetworkManager.Singleton.IsClient)
             {
                 Add(systemFactory.Create<PlayerCameraInitSystem>());
             }
 
+            Add(systemFactory.Create<SetPlayerSpawnedPositionSystem>());
             Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
             Add(systemFactory.Create<PlayerSpeedSetupSystem>());
         }
