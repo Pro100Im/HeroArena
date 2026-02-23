@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuScope
       objectReference: {fileID: 0}
+    - target: {fileID: 4166378475555592437, guid: 17a70117d5f17d14982575a6a861413d, type: 3}
+      propertyPath: m_Name
+      value: TransitionScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 5439528801562023760, guid: 17a70117d5f17d14982575a6a861413d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.18056

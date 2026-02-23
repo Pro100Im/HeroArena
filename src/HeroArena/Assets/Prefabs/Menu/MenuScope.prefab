@@ -149,8 +149,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16feea5288757284aaaf906201063180, type: 3}
---- !u!224 &1813922204554146916 stripped
-RectTransform:
+--- !u!4 &1813922204554146916 stripped
+Transform:
   m_CorrespondingSourceObject: {fileID: 4601073631911080010, guid: 16feea5288757284aaaf906201063180, type: 3}
   m_PrefabInstance: {fileID: 2807454186874946606}
   m_PrefabAsset: {fileID: 0}
@@ -169,7 +169,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6557691044038864976, guid: 1d05d44f752e975419a15430415307f3, type: 3}
       propertyPath: m_Name
-      value: TransitionService
+      value: TransitionScreen
       objectReference: {fileID: 0}
     - target: {fileID: 6557691044038864976, guid: 1d05d44f752e975419a15430415307f3, type: 3}
       propertyPath: m_IsActive
@@ -260,8 +260,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d05d44f752e975419a15430415307f3, type: 3}
---- !u!224 &4512137806814578480 stripped
-RectTransform:
+--- !u!4 &4512137806814578480 stripped
+Transform:
   m_CorrespondingSourceObject: {fileID: 6651323008921792405, guid: 1d05d44f752e975419a15430415307f3, type: 3}
   m_PrefabInstance: {fileID: 7120307990781061285}
   m_PrefabAsset: {fileID: 0}

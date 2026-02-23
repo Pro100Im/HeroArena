@@ -1,6 +1,7 @@
 using Code.Common.Network;
 using Code.Common.StaticData;
 using Code.Common.Time;
+using Code.Common.UI;
 using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Helpers;
 using Code.Infrastructure.Loading;
@@ -36,6 +37,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
 
             builder.Register<NetworkService>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<UIService>(Lifetime.Singleton);
         }
 
         private void BindAssetManagementServices(IContainerBuilder builder)

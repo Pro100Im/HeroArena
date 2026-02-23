@@ -75,7 +75,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         {
             builder.Register<IInputService, InputService>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<ICameraService>().AsImplementedInterfaces().AsSelf();
-            builder.RegisterComponentInHierarchy<TransitionService>();
+            builder.RegisterComponentInHierarchy<TransitionScreen>();
         }
 
         private void BindStateMachine(IContainerBuilder builder)

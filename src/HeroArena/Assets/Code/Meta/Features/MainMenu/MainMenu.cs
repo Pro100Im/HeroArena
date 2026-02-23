@@ -1,4 +1,5 @@
 ﻿using Code.Common.Network;
+using Code.Common.UI;
 using Code.Common.UI.Transition;
 using Code.Infrastructure.Loading;
 using Cysharp.Threading.Tasks;
@@ -31,16 +32,18 @@ namespace Code.Meta.UI.MainMenu
 
         private ISceneLoader _sceneLoader;
         private INetworkConnectionService _networkConnectionService;
-        private TransitionService _transitionService;
+        private TransitionScreen _transitionScreen;
+        private UIService _uIService;
 
         public IObserver<InputControl> OnAnyButton { get; private set; }
 
         [Inject]
-        private void Construct(ISceneLoader sceneLoader, INetworkConnectionService networkConnectionService, TransitionService transitionService)
+        private void Construct(ISceneLoader sceneLoader, INetworkConnectionService networkConnectionService, TransitionScreen transitionScreen, UIService uIService)
         {
             _sceneLoader = sceneLoader;
-            _transitionService = transitionService;
+            _transitionScreen = transitionScreen;
             _networkConnectionService = networkConnectionService;
+            _uIService = uIService;
         }
 
         private void Awake()
@@ -69,7 +72,7 @@ namespace Code.Meta.UI.MainMenu
         {
             NetworkManager.Singleton.OnServerStarted += EnterNetworkBattleLoadingState;
 
-            _transitionService.Execute(0).AsTask();
+            _transitionScreen.Hide().AsTask();
         }
 
         private void OnAnyButtonPress(InputAction.CallbackContext context)
@@ -79,9 +82,9 @@ namespace Code.Meta.UI.MainMenu
                 _pressAnyBtn.Disable();
                 _pressAnyBtn.actionTriggered -= OnAnyButtonPress;
 
-                DOTween.To(() => _intro.style.opacity.value, x => _intro.style.opacity = x, 0f, _fadeDuration).SetEase(Ease.InOutQuad);
+                _uIService.Hide(_intro).AsTask();
+                _uIService.Show(_mainMenu).AsTask();
 
-                DOTween.To(() => _mainMenu.style.opacity.value, x => _mainMenu.style.opacity = x, 1f, _fadeDuration).SetEase(Ease.InOutQuad);
                 _quickMatchButton.pickingMode = PickingMode.Position;
                 _exitButton.pickingMode = PickingMode.Position;
             }
@@ -91,18 +94,18 @@ namespace Code.Meta.UI.MainMenu
         {
             _cancelSearchingButton.pickingMode = PickingMode.Ignore;
 
-            await _transitionService.Execute(1);
+            await _transitionScreen.Show();
 
             _sceneLoader.NetworkLoad(_gameSceneName);       
         }
 
         private void QuickMatch()
         {
-            DOTween.To(() => _mainMenu.style.opacity.value, x => _mainMenu.style.opacity = x, 0f, _fadeDuration).SetEase(Ease.InOutQuad);
+            _uIService.Hide(_mainMenu).AsTask();
             _quickMatchButton.pickingMode = PickingMode.Ignore;
             _exitButton.pickingMode = PickingMode.Ignore;
 
-            DOTween.To(() => _searchingPopUp.style.opacity.value, x => _searchingPopUp.style.opacity = x, 1f, _fadeDuration).SetEase(Ease.InOutQuad);
+            _uIService.Show(_searchingPopUp).AsTask();
             _cancelSearchingButton.pickingMode = PickingMode.Position;
 
             _networkConnectionService.QuickMatch();
@@ -112,11 +115,11 @@ namespace Code.Meta.UI.MainMenu
         {
             _networkConnectionService.CancelSerching();
 
-            DOTween.To(() => _mainMenu.style.opacity.value, x => _mainMenu.style.opacity = x, 1f, _fadeDuration).SetEase(Ease.InOutQuad);
+            _uIService.Show(_mainMenu).AsTask();
             _quickMatchButton.pickingMode = PickingMode.Position;
             _exitButton.pickingMode = PickingMode.Position;
 
-            DOTween.To(() => _searchingPopUp.style.opacity.value, x => _searchingPopUp.style.opacity = x, 0f, _fadeDuration).SetEase(Ease.InOutQuad);
+            _uIService.Hide(_searchingPopUp).AsTask();
             _cancelSearchingButton.pickingMode = PickingMode.Ignore;
         }
 

@@ -18,15 +18,15 @@ namespace Code.Infrastructure.States.GameStates
         private readonly INetworkSessionService _networkSessionService;
         private readonly IGroup<GameEntity> _entities;
 
-        private readonly TransitionService _transitionService;
+        private readonly TransitionScreen _transitionScreen;
 
-        public GameEnterState(IGameStateMachine stateMachine, IPlayerFactory playerFactory, INetworkSessionService networkSessionService, TransitionService transitionService, 
+        public GameEnterState(IGameStateMachine stateMachine, IPlayerFactory playerFactory, INetworkSessionService networkSessionService, TransitionScreen transitionScreen, 
             GameContext game)
         {
             _stateMachine = stateMachine;
             _playerFactory = playerFactory;
             _networkSessionService = networkSessionService;
-            _transitionService = transitionService;
+            _transitionScreen = transitionScreen;
 
             _entities = game.GetGroup(GameMatcher.AllOf(GameMatcher.ClientId));
         }
@@ -77,7 +77,7 @@ namespace Code.Infrastructure.States.GameStates
                 NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString());
 
                 _stateMachine.Enter<GameLoopState>();
-                _transitionService.Execute(0).AsTask();
+                _transitionScreen.Hide().AsTask();
             }
         }
     }

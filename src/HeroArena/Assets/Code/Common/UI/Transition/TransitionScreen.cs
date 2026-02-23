@@ -1,16 +1,22 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VContainer;
 
 namespace Code.Common.UI.Transition
 {
-    public class TransitionService : MonoBehaviour
+    public class TransitionScreen : MonoBehaviour
     {
         [SerializeField] private UIDocument _transitionScreenDoc;
-        [SerializeField] private float _fadeDuration = 0.2f;
 
         private VisualElement _canvas;
+        private UIService _uIService;
+
+        [Inject]
+        private void Construct(UIService uIService)
+        {
+            _uIService = uIService;
+        }
 
         private void Awake()
         {
@@ -18,9 +24,14 @@ namespace Code.Common.UI.Transition
             _canvas = root.Q<VisualElement>("Canvas");
         }
 
-        public async UniTask Execute(float endValue)
+        public async UniTask Show()
         {
-            await DOTween.To(() => _canvas.style.opacity.value, x => _canvas.style.opacity = x, endValue, _fadeDuration).AsyncWaitForCompletion();
+            await _uIService.Show(_canvas);
+        }
+
+        public async UniTask Hide()
+        {
+            await _uIService.Hide(_canvas);
         }
     }
 }
