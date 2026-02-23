@@ -1,5 +1,5 @@
 ﻿using Code.Common.Network;
-using Code.Common.Transition;
+using Code.Common.UI.Transition;
 using Code.Game.Features.Network;
 using Code.Game.Features.Player.Factory;
 using Code.Infrastructure.States.StateInfrastructure;

@@ -1,6 +1,5 @@
 using Code.Common.Cameras;
-using Code.Common.Network;
-using Code.Common.Transition;
+using Code.Common.UI.Transition;
 using Code.Game.Features;
 using Code.Game.Features.Input;
 using Code.Game.Features.Input.Systems;

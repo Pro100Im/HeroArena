@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Common.Transition.TransitionService
   _transitionScreenDoc: {fileID: 2886333409831155339}
-  _fadeDuration: 0.2
+  _fadeDuration: 0.8
 --- !u!114 &2886333409831155339
 MonoBehaviour:
   m_ObjectHideFlags: 0

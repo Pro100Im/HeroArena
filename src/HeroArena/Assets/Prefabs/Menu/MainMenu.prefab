@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSceneName: Game
   _mainMenuDoc: {fileID: 5658811535841041257}
-  _fadeDuration: 0.2
+  _fadeDuration: 0.5
   _pressAnyBtn:
     m_Name: Press Any Btn
     m_Id: 49e2d07c-f6f1-4238-ba09-06cedb19322b

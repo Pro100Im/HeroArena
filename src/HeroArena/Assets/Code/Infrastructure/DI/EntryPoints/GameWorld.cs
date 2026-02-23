@@ -1,4 +1,3 @@
-using Code.Common.Transition;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using VContainer.Unity;
@@ -9,7 +8,7 @@ namespace Code.Infrastructure.DI.EntryPoints
     {
         private IGameStateMachine _gameStateMachine;
 
-        public GameWorld(IGameStateMachine gameStateMachine, TransitionService transitionService)
+        public GameWorld(IGameStateMachine gameStateMachine)
         {
             _gameStateMachine = gameStateMachine;
         }

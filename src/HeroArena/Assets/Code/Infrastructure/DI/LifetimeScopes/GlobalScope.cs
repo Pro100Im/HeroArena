@@ -1,14 +1,8 @@
 using Code.Common.Network;
 using Code.Common.StaticData;
 using Code.Common.Time;
-using Code.Common.Transition;
-using Code.Common.Windows;
-using Code.Game.Features.Player.Factory;
-using Code.Game.Input.Service;
 using Code.Infrastructure.AssetManagement;
-using Code.Infrastructure.DI.EntryPoints;
 using Code.Infrastructure.Helpers;
-using Code.Infrastructure.Identifiers;
 using Code.Infrastructure.Loading;
 using UnityEngine;
 using VContainer;
@@ -32,7 +26,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
         private void BindUIFactories(IContainerBuilder builder)
         {
-            builder.Register<IWindowFactory, WindowFactory>(Lifetime.Singleton);
+
         }
 
         private void BindCommonServices(IContainerBuilder builder)
@@ -40,7 +34,6 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<ITimeService, UnityTimeService>(Lifetime.Singleton);
             builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
-            builder.Register<IWindowService, WindowService>(Lifetime.Singleton);
 
             builder.Register<NetworkService>(Lifetime.Singleton).AsImplementedInterfaces();
         }

@@ -1,4 +1,4 @@
-using Code.Common.Transition;
+using Code.Common.UI.Transition;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

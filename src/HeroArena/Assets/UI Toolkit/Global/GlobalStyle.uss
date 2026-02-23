@@ -43,11 +43,6 @@
     margin-left: 20px;
 }
 
-.hide {
-    opacity: 0;
-    visibility: visible;
-}
-
 .titleText {
     color: rgb(82, 24, 7);
     font-size: 170px;
@@ -55,4 +50,9 @@
     -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/CinzelDecorative-Bold.ttf?fileID=12800000&guid=73f748e5ebb9da540ae333228798f23c&type=3#CinzelDecorative-Bold");
     -unity-text-outline-color: rgb(214, 183, 152);
     -unity-text-outline-width: 2px;
+}
+
+.hide {
+    opacity: 0;
+    visibility: visible;
 }
