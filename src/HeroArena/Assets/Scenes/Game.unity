@@ -16119,8 +16119,8 @@ MonoBehaviour:
   Lens:
     FieldOfView: 60
     OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    NearClipPlane: -5
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
     PhysicalProperties:
@@ -34832,8 +34832,8 @@ MonoBehaviour:
   Lens:
     FieldOfView: 60
     OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    NearClipPlane: -5
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
     PhysicalProperties:
@@ -34857,8 +34857,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701258106}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12329746, y: -0.0000000010989133, z: -4.1442173e-11, w: 0.9923698}
-  m_LocalPosition: {x: 0, y: 2.503529, z: -4.7685847}
+  m_LocalRotation: {x: 0.28876135, y: 0.000000028532781, z: -0.00000000860576, w: 0.95740116}
+  m_LocalPosition: {x: 0, y: 6.735764, z: -8.191521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34913,7 +34913,7 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   OrbitStyle: 0
-  Radius: 5
+  Radius: 10
   Orbits:
     Top:
       Radius: 2
@@ -34937,9 +34937,9 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: 17.5
-    Center: 17.5
-    Range: {x: -5, y: 45}
+    Value: 35
+    Center: 35
+    Range: {x: 30, y: 45}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -41319,10 +41319,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: -5
+  far clip plane: 100
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -41347,8 +41347,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984239434}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12329746, y: -0.0000000011213728, z: 1.3932551e-10, w: 0.9923698}
-  m_LocalPosition: {x: 0, y: 2.503529, z: -4.7685847}
+  m_LocalRotation: {x: 0.28876135, y: 0.000000028532781, z: -0.0000000086057605, w: 0.9574011}
+  m_LocalPosition: {x: 0, y: 6.735764, z: -8.191521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -837,6 +837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2145660435712272365}
+  - component: {fileID: 2305309626890182094}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -861,6 +862,33 @@ Transform:
   - {fileID: 2476572400631281374}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2305309626890182094
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927186500216150043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 019df69c9b13e46409c3490b3c31dfb8, type: 3}
+  m_Controller: {fileID: 22100000, guid: f449141a52888e144b67e3f0d84e486d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'RightShoulder'\n\tTransform
+    'LeftHand'\n\tTransform 'RightHand'\n\tTransform 'LeftLeg'\n\tTransform 'LeftUpLeg'\n\tTransform
+    'RightFoot'\n\tTransform 'Head'\n\tTransform 'RightArm'\n\tTransform 'RightForeArm'\n\tand
+    more ...\n\tFrom animation clip 'KnightIdle'"
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1983598681274538345
 GameObject:
   m_ObjectHideFlags: 0
