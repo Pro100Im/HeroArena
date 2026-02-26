@@ -108,6 +108,9 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<CreateEntityViewFromPrefabSystem>(Lifetime.Singleton);
 
             builder.Register<SelectPlayerSpawnPositionSystem>(Lifetime.Singleton);
+
+            builder.Register<ReceiveInputSystem>(Lifetime.Singleton);
+
             builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
         }
 

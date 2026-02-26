@@ -10,7 +10,7 @@ namespace Code.Game.Features.Input
         {
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
-
+                Add(systemFactory.Create<ReceiveInputSystem>());
             }
 
             if (NetworkManager.Singleton.IsClient)

@@ -8,17 +8,23 @@
 //------------------------------------------------------------------------------
 public static class InputComponentsLookup {
 
-    public const int AxisInput = 0;
-    public const int Input = 1;
+    public const int ClientId = 0;
+    public const int LocalPlayer = 1;
+    public const int AxisInput = 2;
+    public const int Input = 3;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 4;
 
     public static readonly string[] componentNames = {
+        "ClientId",
+        "LocalPlayer",
         "AxisInput",
         "Input"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(Code.Game.Features.Network.ClientId),
+        typeof(Code.Game.Features.Network.LocalPlayer),
         typeof(Code.Game.Input.AxisInput),
         typeof(Code.Game.Input.Input)
     };

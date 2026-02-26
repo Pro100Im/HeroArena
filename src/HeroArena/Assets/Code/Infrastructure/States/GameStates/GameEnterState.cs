@@ -1,4 +1,5 @@
-﻿using Code.Common.Network;
+﻿using Code.Common.Entity;
+using Code.Common.Network;
 using Code.Common.UI.Transition;
 using Code.Game.Features.Network;
 using Code.Game.Features.Player.Factory;
@@ -70,6 +71,16 @@ namespace Code.Infrastructure.States.GameStates
             reader.ReadValueSafe(out ulong playerId);
 
             _playerFactory.CreatePlayer(playerId);
+
+            var entity = CreateInputEntity.Empty();
+
+            entity.isInput = true;
+            entity.AddClientId(playerId);
+
+            if (NetworkManager.Singleton.LocalClientId == playerId)
+            {
+                entity.isLocalPlayer = true;
+            }
 
             if(_entities.count >= NetworkManager.Singleton.ConnectedClientsList.Count)
             {

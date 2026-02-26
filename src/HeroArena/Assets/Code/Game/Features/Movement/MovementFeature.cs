@@ -10,14 +10,14 @@ namespace Code.Game.Features.Movement
         {
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
-
+                Add(systemFactory.Create<MoveByCharacterControllerSystem>());
+                Add(systemFactory.Create<UpdateTransformPositionSystem>());
+                Add(systemFactory.Create<RotateAlongDirectionSystem>());
             }
 
             if (NetworkManager.Singleton.IsClient)
             {
-                Add(systemFactory.Create<MoveByCharacterControllerSystem>());
-                Add(systemFactory.Create<UpdateTransformPositionSystem>());
-                Add(systemFactory.Create<RotateAlongDirectionSystem>());
+
             }
         }
     }

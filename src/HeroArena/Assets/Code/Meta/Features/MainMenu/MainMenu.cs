@@ -3,7 +3,6 @@ using Code.Common.UI;
 using Code.Common.UI.Transition;
 using Code.Infrastructure.Loading;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using System;
 using Unity.Netcode;
 using UnityEngine;
@@ -18,7 +17,6 @@ namespace Code.Meta.UI.MainMenu
         [SerializeField] private string _gameSceneName = "Game";
         [Space]
         [SerializeField] private UIDocument _mainMenuDoc;
-        [SerializeField] private float _fadeDuration = 0.2f;
         [Space]
         [SerializeField] private InputActionMap _pressAnyBtn;
 

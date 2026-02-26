@@ -59,6 +59,7 @@ namespace Code.Game.Features.Player.Systems
                     {
                         player.transform.Value.position = spawnRequest.spawnPosition.Value;
                         player.isWaitingToSpawn = false;
+                        player.isMovementAvailable = true;
                     }
                 }
 

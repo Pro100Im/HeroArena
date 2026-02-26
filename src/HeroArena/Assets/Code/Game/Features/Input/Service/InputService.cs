@@ -40,7 +40,6 @@ namespace Code.Game.Input.Service
 
         public float GetHorizontalAxis() => GetInputAxis().x;
 
-
         public bool GetLeftMouseButton() => Mouse.current?.leftButton.isPressed == true && !IsPointerOverUI();
 
         public bool GetLeftMouseButtonDown() => Mouse.current?.leftButton.wasPressedThisFrame == true && !IsPointerOverUI();

@@ -13,7 +13,7 @@ namespace Code.Game.Features.Input.Systems
 
         public void Initialize()
         {
-            CreateInputEntity.Empty().isInput = true;
+           
         }
     }
 }

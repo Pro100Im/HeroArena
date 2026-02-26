@@ -28,6 +28,9 @@ namespace Code.Game.Features.Player.Systems
             {
                 foreach (var player in _players)
                 {
+                    if (input.clientId != player.clientId)
+                        continue;
+
                     player.isMoving = input.hasAxisInput;
 
                     if (player.isMoving)
