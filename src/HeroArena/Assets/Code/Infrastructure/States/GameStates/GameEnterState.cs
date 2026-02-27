@@ -76,6 +76,7 @@ namespace Code.Infrastructure.States.GameStates
 
             entity.isInput = true;
             entity.AddClientId(playerId);
+            entity.AddAxisInput(Vector2.zero);
 
             if (NetworkManager.Singleton.LocalClientId == playerId)
             {

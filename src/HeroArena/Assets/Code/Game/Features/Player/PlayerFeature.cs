@@ -11,15 +11,14 @@ namespace Code.Game.Features.Player
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
                 Add(systemFactory.Create<PlayerAnimatorSystem>());
+                Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
+                Add(systemFactory.Create<PlayerSpeedSetupSystem>());
             }
 
             if(NetworkManager.Singleton.IsClient)
             {
                 Add(systemFactory.Create<PlayerCameraInitSystem>());
             }
-
-            Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
-            Add(systemFactory.Create<PlayerSpeedSetupSystem>());
         }
     }
 }

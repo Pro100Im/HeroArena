@@ -37,9 +37,7 @@ namespace Code.Game.Features.Input.Systems
 
                 if (x == 0 && y == 0)
                 {
-                    input.RemoveAxisInput();
-
-                    continue;
+                    input.ReplaceAxisInput(Vector2.zero);
                 }
                 else
                 {
