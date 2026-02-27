@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Code.Game.Features.Input.Systems
 {
-    public class ReceiveInputSystem : IInitializeSystem
+    public class ReceiveInputSystem : IInitializeSystem, ITearDownSystem
     {
         private readonly IGroup<InputEntity> _inputs;
         private readonly List<InputEntity> _inputsBuffer = new(32);
@@ -36,14 +36,15 @@ namespace Code.Game.Features.Input.Systems
                 reader.ReadValueSafe(out float y);
 
                 if (x == 0 && y == 0)
-                {
                     input.ReplaceAxisInput(Vector2.zero);
-                }
                 else
-                {
                     input.ReplaceAxisInput(new Vector2(x, y));
-                }
             }
+        }
+
+        public void TearDown()
+        {
+            NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.ReceiveInput.ToString());
         }
     }
 }

@@ -85,12 +85,15 @@ namespace Code.Infrastructure.States.GameStates
 
             if(_entities.count >= NetworkManager.Singleton.ConnectedClientsList.Count)
             {
-                NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SceneManager_OnSynchronizeComplete;
-                NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString());
-
                 _stateMachine.Enter<GameLoopState>();
                 _transitionScreen.Hide().AsTask();
             }
+        }
+
+        protected override void Exit()
+        {
+            NetworkManager.Singleton.SceneManager.OnSynchronizeComplete -= SceneManager_OnSynchronizeComplete;
+            NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.CreatePlayerEntity.ToString());
         }
     }
 }

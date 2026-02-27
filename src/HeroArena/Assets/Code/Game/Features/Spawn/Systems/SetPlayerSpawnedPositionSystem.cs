@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Code.Game.Features.Player.Systems
 {
-    public class SetPlayerSpawnedPositionSystem : IExecuteSystem
+    public class SetPlayerSpawnedPositionSystem : IInitializeSystem, IExecuteSystem, ITearDownSystem
     {
         private readonly IGroup<GameEntity> _players;
         private readonly IGroup<GameEntity> _spawnRequests;
@@ -30,7 +30,10 @@ namespace Code.Game.Features.Player.Systems
                 GameMatcher.ObjectId,
                 GameMatcher.SpawnRequsted,
                 GameMatcher.SpawnPosition));
+        }
 
+        public void Initialize()
+        {
             NetworkManager.Singleton.CustomMessagingManager.RegisterNamedMessageHandler(RequestTypes.ReceiveSpawnPosition.ToString(), PlayerSpawnPosMessageHandler);
         }
 
@@ -65,6 +68,11 @@ namespace Code.Game.Features.Player.Systems
 
                 spawnRequest.Destroy();
             }
+        }
+
+        public void TearDown()
+        {
+            NetworkManager.Singleton?.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.ReceiveSpawnPosition.ToString());
         }
     }
 }

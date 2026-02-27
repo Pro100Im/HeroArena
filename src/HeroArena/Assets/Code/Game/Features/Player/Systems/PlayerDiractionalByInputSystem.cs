@@ -29,15 +29,9 @@ namespace Code.Game.Features.Player.Systems
                 foreach (var player in _players)
                 {
                     if (input.clientId.Value != player.clientId.Value)
-                    {
-                        Debug.Log($"input.axisInput.Value.x {input.clientId} input.axisInput.Value.y {player.clientId}");
-
                         continue;
-                    }
 
-                    player.isMoving = input.hasAxisInput;
-
-                    Debug.Log($"input.axisInput.Value.x {input.axisInput.Value.x} input.axisInput.Value.y {input.axisInput.Value.y}");
+                    player.isMoving = input.axisInput.Value.magnitude > 0;
 
                     if (player.isMoving)
                     {
