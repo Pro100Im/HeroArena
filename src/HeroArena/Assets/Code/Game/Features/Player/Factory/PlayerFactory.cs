@@ -15,7 +15,7 @@ namespace Code.Game.Features.Player.Factory
 
         public GameEntity CreatePlayer(ulong id)
         {
-            var entity = CreateEntity.Empty();
+            var entity = CreateGameEntity.Empty();
             entity.AddId(_identifiers.Next());
             entity.AddClientId(id);
             entity.AddDirection(Vector2.zero);

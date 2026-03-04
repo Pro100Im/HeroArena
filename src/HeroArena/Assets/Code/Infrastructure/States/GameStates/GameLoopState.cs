@@ -4,13 +4,14 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class GameLoopState : IState, IUpdateable
+    public class GameLoopState : IState, ITickableState, IFixedTickableState
     {
         private readonly ISystemFactory _systems;
 
         private readonly GameContext _gameContext;
 
-        private GameFeature _gameFeature;
+        private GameTickFeature _gameTickFeature;
+        private GameFixedTickFeature _gameFixedTickFeature;
 
         public GameLoopState(ISystemFactory systems, GameContext gameContext)
         {
@@ -20,26 +21,42 @@ namespace Code.Infrastructure.States.GameStates
 
         public void Enter()
         {
-            _gameFeature = _systems.Create<GameFeature>();
-            _gameFeature.Initialize();
+            _gameTickFeature = _systems.Create<GameTickFeature>();
+            _gameFixedTickFeature = _systems.Create<GameFixedTickFeature>();
+
+            _gameTickFeature.Initialize();
+            _gameFixedTickFeature.Initialize();
         }
 
-        public void Update()
+        public void Tick()
         {
-            _gameFeature?.Execute();
-            _gameFeature?.Cleanup();
+            _gameTickFeature?.Execute();
+            _gameTickFeature?.Cleanup();
+        }
+
+        public void FixedTick()
+        {
+            _gameFixedTickFeature?.Execute();
+            _gameFixedTickFeature?.Cleanup();
         }
 
         public void Exit()
         {
-            _gameFeature.DeactivateReactiveSystems();
-            _gameFeature.ClearReactiveSystems();
+            _gameTickFeature.DeactivateReactiveSystems();
+            _gameTickFeature.ClearReactiveSystems();
+
+            _gameFixedTickFeature.DeactivateReactiveSystems();
+            _gameFixedTickFeature.ClearReactiveSystems();
 
             DestructEntities();
 
-            _gameFeature.Cleanup();
-            _gameFeature.TearDown();
-            _gameFeature = null;
+            _gameTickFeature.Cleanup();
+            _gameTickFeature.TearDown();
+            _gameTickFeature = null;
+
+            _gameFixedTickFeature.Cleanup();
+            _gameFixedTickFeature.TearDown();
+            _gameFixedTickFeature = null;
         }
 
         private void DestructEntities()

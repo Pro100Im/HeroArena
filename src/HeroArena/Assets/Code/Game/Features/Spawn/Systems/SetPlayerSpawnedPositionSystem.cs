@@ -45,7 +45,7 @@ namespace Code.Game.Features.Player.Systems
             reader.ReadValueSafe(out ulong clientID);
             reader.ReadValueSafe(out ulong objectID);
 
-            var entity = CreateEntity.Empty();
+            var entity = CreateGameEntity.Empty();
             entity.AddClientId(clientID);
             entity.AddObjectId(objectID);
             entity.AddSpawnPosition(new Vector3(posX, posY ,posZ));

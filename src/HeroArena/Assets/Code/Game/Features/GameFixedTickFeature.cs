@@ -1,22 +1,17 @@
-using Code.Game.Features.Input;
 using Code.Game.Features.Movement;
 using Code.Game.Features.Network;
-using Code.Game.Features.Player;
 using Code.Game.Features.Spawn;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View;
 
 namespace Code.Game.Features
 {
-    public class GameFeature : Feature
+    public class GameFixedTickFeature : Feature
     {
-        public GameFeature(ISystemFactory systemFactory)
+        public GameFixedTickFeature(ISystemFactory systemFactory)
         {
             Add(systemFactory.Create<CreateViewFeature>());
-            Add(systemFactory.Create<NetworkFeature>());
             Add(systemFactory.Create<SpawnFeature>());
-            Add(systemFactory.Create<InputFeature>());
-            Add(systemFactory.Create<PlayerFeature>());
             Add(systemFactory.Create<MovementFeature>());
         }
     }

@@ -26,7 +26,7 @@ namespace Code.Infrastructure.View
 
         private void Awake()
         {
-            var entity = CreateEntity.Empty();
+            var entity = CreateGameEntity.Empty();
 
             entity.AddId(_identifierService.Next());
 

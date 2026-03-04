@@ -4,7 +4,7 @@ using VContainer.Unity;
 
 namespace Code.Infrastructure.DI.EntryPoints
 {
-    public class GameWorld : ITickable, IInitializable
+    public class GameWorld : ITickable, IInitializable, IFixedTickable
     {
         private IGameStateMachine _gameStateMachine;
 
@@ -20,7 +20,12 @@ namespace Code.Infrastructure.DI.EntryPoints
 
         public void Tick()
         {
-            _gameStateMachine.Update();
+            _gameStateMachine.Tick();
+        }
+
+        public void FixedTick()
+        {
+            _gameStateMachine.FixedTick();
         }
     }
 }

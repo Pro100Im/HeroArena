@@ -1,7 +1,7 @@
 namespace Code.Infrastructure.States.StateInfrastructure
 {
-    public interface IUpdateable
+    public interface IFixedTickableState
     {
-        void Update();
+        void FixedTick();
     }
 }

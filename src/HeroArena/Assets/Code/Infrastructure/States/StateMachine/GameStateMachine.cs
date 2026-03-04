@@ -13,12 +13,6 @@ namespace Code.Infrastructure.States.StateMachine
             _stateFactory = stateFactory;
         }
 
-        public void Update()
-        {
-            if(_activeState is IUpdateable updateableState)
-                updateableState.Update();
-        }
-
         public void Enter<TState>() where TState : class, IState
         {
             var state = ChangeState<TState>();
@@ -42,6 +36,18 @@ namespace Code.Infrastructure.States.StateMachine
             _activeState = state;
 
             return state;
+        }
+
+        public void Tick()
+        {
+            if (_activeState is ITickableState state)
+                state.Tick();
+        }
+
+        public void FixedTick()
+        {
+            if (_activeState is IFixedTickableState state)
+                state.FixedTick();
         }
     }
 }

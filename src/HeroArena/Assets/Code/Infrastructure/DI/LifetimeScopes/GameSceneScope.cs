@@ -92,7 +92,8 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
         private void BindFeatures(IContainerBuilder builder)
         {
-            builder.Register<GameFeature>(Lifetime.Singleton);
+            builder.Register<GameTickFeature>(Lifetime.Singleton);
+            builder.Register<GameFixedTickFeature>(Lifetime.Singleton);
 
             builder.Register<CreateViewFeature>(Lifetime.Singleton);
             builder.Register<NetworkFeature>(Lifetime.Singleton);
@@ -125,6 +126,9 @@ namespace Code.Infrastructure.DI.LifetimeScopes
         private void BindSystems(IContainerBuilder builder)
         {
             builder.Register<ObjectIdReceiveSystem>(Lifetime.Singleton);
+            builder.Register<NetworkTickInitSystem>(Lifetime.Singleton);
+            builder.Register<NetworkTimeSystem>(Lifetime.Singleton);
+
             builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
             builder.Register<SetPlayerSpawnedPositionSystem>(Lifetime.Singleton);
 

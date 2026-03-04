@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8325538329748404535}
   - component: {fileID: -6567897368112127657}
   - component: {fileID: -8111894988486680816}
+  - component: {fileID: 1713765597134795079}
   - component: {fileID: 3085094240726581637}
   - component: {fileID: 5308243343092752875}
   m_Layer: 0
@@ -160,6 +161,20 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &1713765597134795079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597244949361831437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee6f9000dbd384db52fd5be9bcac81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Game.Features.Movement.Registrars.MovementPredictRegistrar
+  EntityView: {fileID: -7261017404258374183}
+  HistoryBufferSize: 32
 --- !u!114 &3085094240726581637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +227,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
