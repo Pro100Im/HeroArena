@@ -4,7 +4,7 @@ using Unity.Netcode;
 
 namespace Code.Game.Features.Network.Systems
 {
-    public class ObjectIdReceiveSystem : IInitializeSystem
+    public class ObjectIdReceiveSystem : IInitializeSystem, ITearDownSystem
     {
         private readonly IGroup<GameEntity> _entities;
         private readonly List<GameEntity> _buffer = new(32);
@@ -35,6 +35,11 @@ namespace Code.Game.Features.Network.Systems
                     break;
                 }
             }
+        }
+
+        public void TearDown()
+        {
+            NetworkManager.Singleton.CustomMessagingManager.UnregisterNamedMessageHandler(RequestTypes.ReceiveObjectId.ToString());
         }
     }
 }

@@ -1,3 +1,5 @@
+using Code.Common.Network;
+using Code.Game.Features.Network;
 using Code.Game.Features.Network.Data;
 using Entitas;
 using Unity.Netcode;
@@ -51,18 +53,31 @@ namespace Code.Game.Features.Movement.Systems
                         if (mover.direction.Value.magnitude > 0)
                             mover.characterController.Value.SimpleMove(mover.direction.Value * mover.currentSpeed.Value);
 
-                        //var newHistory = mover.movementHistory.Value;
-
-                        //newHistory[network.currentTick.Value % mover.historyBufferSize.Value]
-                        //    = new MovementHistoryData(network.currentTick.Value, mover.direction.Value, mover.transform.Value.position);
-
-                        //mover.ReplaceMovementHistory(newHistory);
-
                         mover.movementHistory.Value[network.currentTick.Value % mover.historyBufferSize.Value]
                             = new MovementHistoryData(network.currentTick.Value, mover.direction.Value, mover.transform.Value.position);
+
+                        if (network.currentTick.Value < 2)
+                            return;
+
+                        var currentData = mover.movementHistory.Value[network.currentTick.Value % mover.historyBufferSize.Value];
+                        var lastData = mover.movementHistory.Value[(network.currentTick.Value - 1) % mover.historyBufferSize.Value];
+
+                        SendMove(currentData.Direction, currentData.Position, lastData.Direction, lastData.Position);
                     }
                 }
             }
+        }
+
+        private void SendMove(Vector2 currentDir, Vector3 currentPos, Vector2 lastDir, Vector3 lastPos)
+        {
+            var totalSize = sizeof(float) * 10;
+            using var builder = new NetworkMessageBuilder(totalSize);
+            var writer = builder.Write(currentDir).Write(currentPos).Write(lastDir).Write(lastPos).Build();
+
+            NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
+            RequestTypes.MovementHistory.ToString(),
+            NetworkManager.ServerClientId,
+            writer);
         }
     }
 }

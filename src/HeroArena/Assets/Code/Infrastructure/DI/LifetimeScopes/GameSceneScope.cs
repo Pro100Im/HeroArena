@@ -97,6 +97,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
             builder.Register<CreateViewFeature>(Lifetime.Singleton);
             builder.Register<NetworkFeature>(Lifetime.Singleton);
+            builder.Register<NetworkFixedFeature>(Lifetime.Singleton);
             builder.Register<SpawnFeature>(Lifetime.Singleton);
             builder.Register<InputFeature>(Lifetime.Singleton);
             builder.Register<PlayerFeature>(Lifetime.Singleton);
@@ -111,6 +112,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<SelectPlayerSpawnPositionSystem>(Lifetime.Singleton);
 
             builder.Register<ReceiveInputSystem>(Lifetime.Singleton);
+            builder.Register<SyncMoveByCharacterControllerSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
         }
@@ -128,6 +130,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<ObjectIdReceiveSystem>(Lifetime.Singleton);
             builder.Register<NetworkTickInitSystem>(Lifetime.Singleton);
             builder.Register<NetworkTimeSystem>(Lifetime.Singleton);
+            builder.Register<NetworkTickSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
             builder.Register<SetPlayerSpawnedPositionSystem>(Lifetime.Singleton);

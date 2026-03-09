@@ -10,7 +10,7 @@ namespace Code.Game.Features.Movement
         {
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
-        
+                Add(systemFactory.Create<SyncMoveByCharacterControllerSystem>());
             }
 
             if (NetworkManager.Singleton.IsClient)

@@ -11,8 +11,8 @@ namespace Code.Game.Features.Player.Service
 
         public void SetMoveParameters(float y, float x)
         {
-            _animator.SetFloat(_verticalParameter, y);
-            _animator.SetFloat(_horizontalParameter, x);
+            _animator?.SetFloat(_verticalParameter, y);
+            _animator?.SetFloat(_horizontalParameter, x);
         }
     }
 }

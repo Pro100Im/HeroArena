@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Netcode;
+using UnityEngine;
 
 namespace Code.Common.Network
 {
@@ -42,6 +43,20 @@ namespace Code.Common.Network
         }
 
         public NetworkMessageBuilder Write(string value)
+        {
+            _writer.WriteValueSafe(value);
+
+            return this;
+        }
+
+        public NetworkMessageBuilder Write(Vector2 value)
+        {
+            _writer.WriteValueSafe(value);
+
+            return this;
+        }
+
+        public NetworkMessageBuilder Write(Vector3 value)
         {
             _writer.WriteValueSafe(value);
 
