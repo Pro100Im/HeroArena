@@ -23,5 +23,6 @@ namespace Code.Game.Features.Network
         ReceiveSpawnPosition,
         ReceiveInput,
         MovementHistory,
+        RollBackMove
     }
 }

@@ -62,17 +62,17 @@ namespace Code.Game.Features.Movement.Systems
                         var currentData = mover.movementHistory.Value[network.currentTick.Value % mover.historyBufferSize.Value];
                         var lastData = mover.movementHistory.Value[(network.currentTick.Value - 1) % mover.historyBufferSize.Value];
 
-                        SendMove(currentData.Direction, currentData.Position, lastData.Direction, lastData.Position);
+                        SendMove(network.currentTick.Value, currentData.Direction, currentData.Position, lastData.Direction, lastData.Position);
                     }
                 }
             }
         }
 
-        private void SendMove(Vector2 currentDir, Vector3 currentPos, Vector2 lastDir, Vector3 lastPos)
+        private void SendMove(int tick, Vector2 currentDir, Vector3 currentPos, Vector2 lastDir, Vector3 lastPos)
         {
-            var totalSize = sizeof(float) * 10;
+            var totalSize = sizeof(int) + sizeof(float) * 10;
             using var builder = new NetworkMessageBuilder(totalSize);
-            var writer = builder.Write(currentDir).Write(currentPos).Write(lastDir).Write(lastPos).Build();
+            var writer = builder.Write(tick).Write(currentDir).Write(currentPos).Write(lastDir).Write(lastPos).Build();
 
             NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
             RequestTypes.MovementHistory.ToString(),

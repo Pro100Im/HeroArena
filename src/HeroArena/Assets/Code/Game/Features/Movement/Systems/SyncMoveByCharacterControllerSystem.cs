@@ -1,3 +1,4 @@
+using Code.Common.Network;
 using Code.Game.Features.Network;
 using Entitas;
 using Unity.Netcode;
@@ -42,6 +43,7 @@ namespace Code.Game.Features.Movement.Systems
             {
                 if (mover.clientId.Value == senderClientId)
                 {
+                    reader.ReadValueSafe(out int tick);
                     reader.ReadValueSafe(out Vector2 currentDir);
                     reader.ReadValueSafe(out Vector3 currentPos);
                     reader.ReadValueSafe(out Vector2 lastDir);
@@ -57,7 +59,14 @@ namespace Code.Game.Features.Movement.Systems
 
                     if (Vector3.Distance(correctPos, currentPos) > 0.5f)
                     {
-                        Debug.LogWarning($"{senderClientId} Error Pos ==== correctPos {correctPos} currentPos {currentPos}");
+                        var totalSize = sizeof(int);
+                        using var builder = new NetworkMessageBuilder(totalSize);
+                        var writer = builder.Write(tick).Build();
+
+                        NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
+                        RequestTypes.RollBackMove.ToString(),
+                        senderClientId,
+                        writer);
                     }
 
                     break;

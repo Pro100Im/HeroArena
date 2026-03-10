@@ -15,6 +15,7 @@ namespace Code.Game.Features.Movement
 
             if (NetworkManager.Singleton.IsClient)
             {
+                Add(systemFactory.Create<RollBackByCharacterControllerSystem>());
                 Add(systemFactory.Create<MoveByCharacterControllerSystem>());
                 Add(systemFactory.Create<UpdateTransformPositionSystem>());
                 Add(systemFactory.Create<RotateAlongDirectionSystem>());

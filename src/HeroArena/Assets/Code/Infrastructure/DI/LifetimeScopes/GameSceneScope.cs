@@ -123,6 +123,7 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<EmitInputSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerCameraInitSystem>(Lifetime.Singleton);
+            builder.Register<RollBackByCharacterControllerSystem>(Lifetime.Singleton);
         }
 
         private void BindSystems(IContainerBuilder builder)

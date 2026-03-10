@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Game.Features.Network.Data
 {
-    public class MovementHistoryData : INetworkSerializable
+    public class MovementHistoryData
     {
         public int Tick;
         public Vector2 Direction;
@@ -14,13 +14,6 @@ namespace Code.Game.Features.Network.Data
             Tick = tick;
             Direction = dir;
             Position = pos;
-        }
-
-        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-        {
-            serializer.SerializeValue(ref Tick);
-            serializer.SerializeValue(ref Direction);
-            serializer.SerializeValue(ref Position);
         }
     }
 }
