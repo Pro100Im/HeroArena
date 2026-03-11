@@ -59,9 +59,9 @@ namespace Code.Game.Features.Movement.Systems
 
                     if (Vector3.Distance(correctPos, currentPos) > 0.5f)
                     {
-                        var totalSize = sizeof(int);
+                        var totalSize = sizeof(int) + sizeof(ulong);
                         using var builder = new NetworkMessageBuilder(totalSize);
-                        var writer = builder.Write(tick).Build();
+                        var writer = builder.Write(tick).Write(senderClientId).Build();
 
                         NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
                         RequestTypes.RollBackMove.ToString(),

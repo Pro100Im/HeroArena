@@ -22,7 +22,8 @@ namespace Code.Game.Features.Movement.Systems
                     GameMatcher.MovementHistory
                     ));
 
-            _networks = networkContext.GetGroup(NetworkMatcher
+            _networks = networkContext
+                .GetGroup(NetworkMatcher
                 .AllOf(
                 NetworkMatcher.CurrentTick,
                 NetworkMatcher.TickRate,
@@ -38,15 +39,17 @@ namespace Code.Game.Features.Movement.Systems
 
         private void RollBackMoveHandler(ulong senderClientId, FastBufferReader reader)
         {
-            foreach(NetworkEntity network in _networks)
+            reader.ReadValueSafe(out int activateTick);
+            reader.ReadValueSafe(out ulong clientId);
+
+            foreach (NetworkEntity network in _networks)
             {
                 foreach (GameEntity mover in _movers)
                 {
-                    if (mover.clientId.Value == senderClientId)
+                    if (mover.clientId.Value == clientId)
                     {
-                        Debug.LogWarning($"RollBackMoveHandler senderClientId {senderClientId}");
+                        Debug.LogWarning($"RollBackMoveHandler senderClientId {clientId}");
 
-                        reader.ReadValueSafe(out int activateTick);
 
                         var correctPos = mover.movementHistory.Value[(activateTick - 1) % mover.historyBufferSize.Value].Position;
 
