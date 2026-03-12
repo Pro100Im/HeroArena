@@ -1,4 +1,5 @@
 using Entitas;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Code.Game.Features.Player.Systems
@@ -12,6 +13,7 @@ namespace Code.Game.Features.Player.Systems
             _players = gameContext.GetGroup(GameMatcher
                 .AllOf(
                 GameMatcher.Player,
+                GameMatcher.ClientId,
                 GameMatcher.PlayerAnimator,
                 GameMatcher.CurrentSpeed,
                 GameMatcher.MaxSpeed));
@@ -21,6 +23,9 @@ namespace Code.Game.Features.Player.Systems
         {
             foreach (var player in _players)
             {
+                if (player.clientId.Value != NetworkManager.Singleton.LocalClientId)
+                    continue;
+
                 var normalizedSpeed = Mathf.Clamp01(player.currentSpeed.Value / player.maxSpeed.Value);
 
                 player.playerAnimator.Value.SetMoveParameters(normalizedSpeed, 0);

@@ -111,7 +111,6 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
             builder.Register<SelectPlayerSpawnPositionSystem>(Lifetime.Singleton);
 
-            builder.Register<ReceiveInputSystem>(Lifetime.Singleton);
             builder.Register<SyncMoveByCharacterControllerSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);

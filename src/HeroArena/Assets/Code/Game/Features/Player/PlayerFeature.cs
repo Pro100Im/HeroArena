@@ -10,7 +10,7 @@ namespace Code.Game.Features.Player
         {
             if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsServer)
             {
-                Add(systemFactory.Create<PlayerAnimatorSystem>());
+                
             }
 
             if(NetworkManager.Singleton.IsClient)
@@ -18,6 +18,7 @@ namespace Code.Game.Features.Player
                 Add(systemFactory.Create<PlayerCameraInitSystem>());
                 Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
                 Add(systemFactory.Create<PlayerSpeedSetupSystem>());
+                Add(systemFactory.Create<PlayerAnimatorSystem>());
             }
         }
     }

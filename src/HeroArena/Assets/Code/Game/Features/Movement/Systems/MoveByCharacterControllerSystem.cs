@@ -37,7 +37,7 @@ namespace Code.Game.Features.Movement.Systems
         {
             foreach (var mover in _movers)
             {
-                if (!NetworkManager.Singleton.IsClient || mover.clientId.Value != NetworkManager.Singleton.LocalClientId)
+                if (NetworkManager.Singleton != null && (!NetworkManager.Singleton.IsClient || mover.clientId.Value != NetworkManager.Singleton.LocalClientId))
                     continue;
 
                 foreach(var network in networks)

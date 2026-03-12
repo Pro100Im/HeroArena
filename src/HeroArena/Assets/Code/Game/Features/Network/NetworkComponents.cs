@@ -21,7 +21,6 @@ namespace Code.Game.Features.Network
         CreatePlayerEntity,
         ReceiveObjectId,
         ReceiveSpawnPosition,
-        ReceiveInput,
         MovementHistory,
         RollBackMove
     }
