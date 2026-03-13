@@ -10,7 +10,7 @@ namespace Code.Game.Features.Movement.Systems
     public class MoveByCharacterControllerSystem : IExecuteSystem
     {
         private readonly IGroup<GameEntity> _movers;
-        private readonly IGroup<NetworkEntity> networks;
+        private readonly IGroup<NetworkEntity> _networks;
 
         public MoveByCharacterControllerSystem(GameContext gameContext, NetworkContext networkContext)
         {
@@ -24,7 +24,7 @@ namespace Code.Game.Features.Movement.Systems
                     GameMatcher.MovementHistory
                     ));
 
-            networks = networkContext.GetGroup(NetworkMatcher
+            _networks = networkContext.GetGroup(NetworkMatcher
                 .AllOf(
                 NetworkMatcher.CurrentTick,
                 NetworkMatcher.TickRate,
@@ -40,7 +40,7 @@ namespace Code.Game.Features.Movement.Systems
                 if (NetworkManager.Singleton != null && (!NetworkManager.Singleton.IsClient || mover.clientId.Value != NetworkManager.Singleton.LocalClientId))
                     continue;
 
-                foreach(var network in networks)
+                foreach(var network in _networks)
                 {
                     while(network.time.Value > network.tickTime.Value)
                     {

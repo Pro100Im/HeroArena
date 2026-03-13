@@ -112,8 +112,6 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<SelectPlayerSpawnPositionSystem>(Lifetime.Singleton);
 
             builder.Register<SyncMoveByCharacterControllerSystem>(Lifetime.Singleton);
-
-            builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
         }
 
         private void BindClientSystems(IContainerBuilder builder)
@@ -122,7 +120,14 @@ namespace Code.Infrastructure.DI.LifetimeScopes
             builder.Register<EmitInputSystem>(Lifetime.Singleton);
 
             builder.Register<PlayerCameraInitSystem>(Lifetime.Singleton);
+            builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
+            builder.Register<PlayerSpeedSetupSystem>(Lifetime.Singleton);
+            builder.Register<PlayerAnimatorSystem>(Lifetime.Singleton);
+
             builder.Register<RollBackByCharacterControllerSystem>(Lifetime.Singleton);
+            builder.Register<MoveByCharacterControllerSystem>(Lifetime.Singleton);
+            builder.Register<UpdateTransformPositionSystem>(Lifetime.Singleton);
+            builder.Register<RotateAlongDirectionSystem>(Lifetime.Singleton);
         }
 
         private void BindSystems(IContainerBuilder builder)
@@ -134,13 +139,6 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
             builder.Register<PlayerCharacterLinkSystem>(Lifetime.Singleton);
             builder.Register<SetPlayerSpawnedPositionSystem>(Lifetime.Singleton);
-
-            builder.Register<PlayerDiractionalByInputSystem>(Lifetime.Singleton);
-            builder.Register<PlayerSpeedSetupSystem>(Lifetime.Singleton);
-
-            builder.Register<MoveByCharacterControllerSystem>(Lifetime.Singleton);
-            builder.Register<UpdateTransformPositionSystem>(Lifetime.Singleton);
-            builder.Register<RotateAlongDirectionSystem>(Lifetime.Singleton);
         }
 
         private void BindGameFactories(IContainerBuilder builder)
