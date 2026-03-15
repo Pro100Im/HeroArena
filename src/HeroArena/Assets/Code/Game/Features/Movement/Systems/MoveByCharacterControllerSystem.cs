@@ -24,7 +24,8 @@ namespace Code.Game.Features.Movement.Systems
                     GameMatcher.MovementHistory
                     ));
 
-            _networks = networkContext.GetGroup(NetworkMatcher
+            _networks = networkContext
+                .GetGroup(NetworkMatcher
                 .AllOf(
                 NetworkMatcher.CurrentTick,
                 NetworkMatcher.TickRate,

@@ -12,20 +12,26 @@ public static class InputComponentsLookup {
     public const int LocalPlayer = 1;
     public const int AxisInput = 2;
     public const int Input = 3;
+    public const int PointerInput = 4;
+    public const int PointerRay = 5;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 6;
 
     public static readonly string[] componentNames = {
         "ClientId",
         "LocalPlayer",
         "AxisInput",
-        "Input"
+        "Input",
+        "PointerInput",
+        "PointerRay"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Game.Features.Network.ClientId),
         typeof(Code.Game.Features.Network.LocalPlayer),
         typeof(Code.Game.Input.AxisInput),
-        typeof(Code.Game.Input.Input)
+        typeof(Code.Game.Input.Input),
+        typeof(Code.Game.Input.PointerInput),
+        typeof(Code.Game.Input.PointerRay)
     };
 }

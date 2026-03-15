@@ -126,6 +126,8 @@ namespace Code.Infrastructure.DI.LifetimeScopes
 
             builder.Register<RollBackByCharacterControllerSystem>(Lifetime.Singleton);
             builder.Register<MoveByCharacterControllerSystem>(Lifetime.Singleton);
+            builder.Register<RotateAlongTargetSystem>(Lifetime.Singleton);
+
             builder.Register<UpdateTransformPositionSystem>(Lifetime.Singleton);
             builder.Register<RotateAlongDirectionSystem>(Lifetime.Singleton);
         }

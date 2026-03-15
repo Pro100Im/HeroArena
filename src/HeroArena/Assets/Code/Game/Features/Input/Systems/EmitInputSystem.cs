@@ -26,6 +26,9 @@ namespace Code.Game.Features.Input.Systems
                     input.ReplaceAxisInput(new Vector2(_inputService.GetHorizontalAxis(), _inputService.GetVerticalAxis()));
                 else
                     input.ReplaceAxisInput(Vector2.zero);
+
+                input.ReplacePointerInput(_inputService.GetWorldPointer());
+                input.ReplacePointerRay(_inputService.GetRayWorldPointer());
             }
         }
     }

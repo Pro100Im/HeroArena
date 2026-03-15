@@ -1,5 +1,4 @@
 using Code.Game.Features.Movement;
-using Code.Game.Features.Network;
 using Code.Game.Features.Spawn;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View;

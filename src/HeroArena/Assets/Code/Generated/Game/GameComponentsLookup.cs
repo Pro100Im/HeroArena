@@ -21,24 +21,26 @@ public static class GameComponentsLookup {
     public const int WorldPosition = 10;
     public const int CurrentSpeed = 11;
     public const int Direction = 12;
-    public const int MaxSpeed = 13;
-    public const int MovementAvailable = 14;
-    public const int Moving = 15;
-    public const int RotationAlignedAlongDirection = 16;
-    public const int Speed = 17;
-    public const int ClientId = 18;
-    public const int HistoryBufferSize = 19;
-    public const int MovementHistory = 20;
-    public const int ObjectId = 21;
-    public const int PlayerAnimator = 22;
-    public const int Player = 23;
-    public const int ForPlayer = 24;
-    public const int FreePoint = 25;
-    public const int SpawnPosition = 26;
-    public const int SpawnRequsted = 27;
-    public const int WaitingToSpawn = 28;
+    public const int LookAtPoint = 13;
+    public const int MaxSpeed = 14;
+    public const int MovementAvailable = 15;
+    public const int Moving = 16;
+    public const int RotationAlignedAlongDirection = 17;
+    public const int RotationAlignedAlongTarget = 18;
+    public const int Speed = 19;
+    public const int ClientId = 20;
+    public const int HistoryBufferSize = 21;
+    public const int MovementHistory = 22;
+    public const int ObjectId = 23;
+    public const int PlayerAnimator = 24;
+    public const int Player = 25;
+    public const int ForPlayer = 26;
+    public const int FreePoint = 27;
+    public const int SpawnPosition = 28;
+    public const int SpawnRequsted = 29;
+    public const int WaitingToSpawn = 30;
 
-    public const int TotalComponents = 29;
+    public const int TotalComponents = 31;
 
     public static readonly string[] componentNames = {
         "Active",
@@ -54,10 +56,12 @@ public static class GameComponentsLookup {
         "WorldPosition",
         "CurrentSpeed",
         "Direction",
+        "LookAtPoint",
         "MaxSpeed",
         "MovementAvailable",
         "Moving",
         "RotationAlignedAlongDirection",
+        "RotationAlignedAlongTarget",
         "Speed",
         "ClientId",
         "HistoryBufferSize",
@@ -86,10 +90,12 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Common.WorldPosition),
         typeof(Code.Game.Features.Movement.CurrentSpeed),
         typeof(Code.Game.Features.Movement.Direction),
+        typeof(Code.Game.Features.Movement.LookAtPoint),
         typeof(Code.Game.Features.Movement.MaxSpeed),
         typeof(Code.Game.Features.Movement.MovementAvailable),
         typeof(Code.Game.Features.Movement.Moving),
         typeof(Code.Game.Features.Movement.RotationAlignedAlongDirection),
+        typeof(Code.Game.Features.Movement.RotationAlignedAlongTarget),
         typeof(Code.Game.Features.Movement.Speed),
         typeof(Code.Game.Features.Network.ClientId),
         typeof(Code.Game.Features.Network.HistoryBufferSize),

@@ -9,7 +9,6 @@ namespace Code.Game.Input.Service
     public class InputService : IInputService
     {
         private Camera _mainCamera;
-        private Vector3 _screenPosition;
         private NewInputSystemApi _newInputSystemApi;
 
         public InputService()
@@ -18,17 +17,22 @@ namespace Code.Game.Input.Service
             _mainCamera = Camera.main;
         }
 
-        public Vector2 GetScreenMousePosition() =>
-            _mainCamera ? Mouse.current?.position.ReadValue() ?? Vector2.zero : Vector2.zero;
+        public Vector2 GetPointer() => _newInputSystemApi.Player.Point.ReadValue<Vector2>();
 
-        public Vector2 GetWorldMousePosition()
+        public Vector2 GetWorldPointer()
         {
             if(_mainCamera == null || Mouse.current == null)
                 return Vector2.zero;
 
-            _screenPosition = Mouse.current.position.ReadValue();
+            return _mainCamera.ScreenToWorldPoint(GetPointer());
+        }
 
-            return _mainCamera.ScreenToWorldPoint(_screenPosition);
+        public Ray GetRayWorldPointer()
+        {
+            if (_mainCamera == null || Mouse.current == null)
+                return new Ray();
+
+            return _mainCamera.ScreenPointToRay(GetPointer());
         }
 
         public void EnableInput() => _newInputSystemApi.Player.Enable();
@@ -40,15 +44,14 @@ namespace Code.Game.Input.Service
 
         public float GetHorizontalAxis() => GetInputAxis().x;
 
-        public bool GetLeftMouseButton() => Mouse.current?.leftButton.isPressed == true && !IsPointerOverUI();
+        //public bool GetLeftMouseButton() => Mouse.current?.leftButton.isPressed == true && !IsPointerOverUI();
 
-        public bool GetLeftMouseButtonDown() => Mouse.current?.leftButton.wasPressedThisFrame == true && !IsPointerOverUI();
+        //public bool GetLeftMouseButtonDown() => Mouse.current?.leftButton.wasPressedThisFrame == true && !IsPointerOverUI();
 
-        public bool GetLeftMouseButtonUp() => Mouse.current?.leftButton.wasReleasedThisFrame == true && !IsPointerOverUI();
-
+        //public bool GetLeftMouseButtonUp() => Mouse.current?.leftButton.wasReleasedThisFrame == true && !IsPointerOverUI();
 
         private Vector2 GetInputAxis() => _newInputSystemApi.Player.Move.ReadValue<Vector2>();
 
-        private bool IsPointerOverUI() => EventSystem.current == null ? false : EventSystem.current.IsPointerOverGameObject();
+        //private bool IsPointerOverUI() => EventSystem.current == null ? false : EventSystem.current.IsPointerOverGameObject();
     }
 }

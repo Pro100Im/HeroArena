@@ -1,6 +1,5 @@
 using Code.Game.Features.Network.Data;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Game.Features.Network
 {

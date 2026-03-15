@@ -35,8 +35,12 @@ namespace Code.Game.Features.Player.Systems
 
                     if (player.isMoving)
                     {
-                        _direction.x = input.axisInput.Value.x;
-                        _direction.z = input.axisInput.Value.y;
+                        var x = input.axisInput.Value.x;
+                        var y = input.axisInput.Value.y;
+                        var transform = player.transform.Value;
+
+                        _direction.x = (transform.right * x).x + (transform.forward * y).x;
+                        _direction.z = (transform.right * x).z + (transform.forward * y).z;
 
                         player.ReplaceDirection(_direction.normalized);
                     }
@@ -45,6 +49,21 @@ namespace Code.Game.Features.Player.Systems
                         if (player.currentSpeed.Value <= 0)
                         {
                             player.ReplaceDirection(Vector3.zero);
+                        }
+                    }
+
+                    var plane = new Plane(Vector3.up, Vector3.zero);
+
+                    if (plane.Raycast(input.pointerRay.Value, out float target))
+                    {
+                        var hitPoint = input.pointerRay.Value.GetPoint(target);
+                        var direction = hitPoint - player.transform.Value.position;
+
+                        direction.y = 0;
+
+                        if (direction.sqrMagnitude > 0.01f)
+                        {
+                            player.ReplaceLookAtPoint(direction);
                         }
                     }
                 }

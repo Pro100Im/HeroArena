@@ -17,6 +17,8 @@ namespace Code.Game.Features.Movement
             {
                 Add(systemFactory.Create<RollBackByCharacterControllerSystem>());
                 Add(systemFactory.Create<MoveByCharacterControllerSystem>());
+                Add(systemFactory.Create<RotateAlongTargetSystem>());
+
                 Add(systemFactory.Create<UpdateTransformPositionSystem>());
                 Add(systemFactory.Create<RotateAlongDirectionSystem>());
             }
