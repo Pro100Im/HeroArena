@@ -14189,6 +14189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d378990c730889b4883042fefbd2a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Common.Cameras.CinemachineCameraService
+  _camera: {fileID: 1984239440}
   _cinemachineCamera: {fileID: 1701258108}
 --- !u!1001 &708047840
 PrefabInstance:

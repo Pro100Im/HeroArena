@@ -9,7 +9,6 @@ namespace Code.Game.Features.Movement.Systems
     public class SyncMoveByCharacterControllerSystem : IInitializeSystem, ITearDownSystem
     {
         private readonly IGroup<GameEntity> _movers;
-        private readonly IGroup<NetworkEntity> networks;
 
         public SyncMoveByCharacterControllerSystem(GameContext gameContext, NetworkContext networkContext)
         {
@@ -22,14 +21,6 @@ namespace Code.Game.Features.Movement.Systems
                     GameMatcher.MovementAvailable,
                     GameMatcher.MovementHistory
                     ));
-
-            networks = networkContext.GetGroup(NetworkMatcher
-                .AllOf(
-                NetworkMatcher.CurrentTick,
-                NetworkMatcher.TickRate,
-                NetworkMatcher.TickTime,
-                NetworkMatcher.Time
-                ));
         }
 
         public void Initialize()

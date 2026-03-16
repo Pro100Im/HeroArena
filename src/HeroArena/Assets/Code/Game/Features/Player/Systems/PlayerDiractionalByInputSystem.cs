@@ -1,3 +1,4 @@
+using Code.Common.Cameras;
 using Entitas;
 using UnityEngine;
 
@@ -5,13 +6,17 @@ namespace Code.Game.Features.Player.Systems
 {
     public class PlayerDiractionalByInputSystem : IExecuteSystem
     {
+        private readonly ICameraService _cameraService;
+
         private readonly IGroup<GameEntity> _players;
         private readonly IGroup<InputEntity> _inputs;
 
         private Vector3 _direction;
 
-        public PlayerDiractionalByInputSystem(GameContext gameContext, InputContext inputContext)
+        public PlayerDiractionalByInputSystem(GameContext gameContext, InputContext inputContext, ICameraService cameraService)
         {
+            _cameraService = cameraService;
+
             _players = gameContext.GetGroup(GameMatcher
                 .AllOf(
                 GameMatcher.Player,
@@ -37,7 +42,8 @@ namespace Code.Game.Features.Player.Systems
                     {
                         var x = input.axisInput.Value.x;
                         var y = input.axisInput.Value.y;
-                        var transform = player.transform.Value;
+                        var camera = _cameraService.GetCamera();
+                        var transform = camera.transform;
 
                         _direction.x = (transform.right * x).x + (transform.forward * y).x;
                         _direction.z = (transform.right * x).z + (transform.forward * y).z;
