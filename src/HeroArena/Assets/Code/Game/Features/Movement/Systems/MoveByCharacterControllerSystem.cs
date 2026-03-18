@@ -41,9 +41,12 @@ namespace Code.Game.Features.Movement.Systems
                 if (NetworkManager.Singleton != null && (!NetworkManager.Singleton.IsClient || mover.clientId.Value != NetworkManager.Singleton.LocalClientId))
                     continue;
 
-                foreach(var network in _networks)
+                if (mover.isMovementRollback)
+                    return;
+
+                foreach (var network in _networks)
                 {
-                    while(network.time.Value > network.tickTime.Value)
+                    while (network.time.Value > network.tickTime.Value)
                     {
                         var newCurrentTick = network.currentTick.Value + 1;
                         var newTime = network.time.Value - network.tickTime.Value;
@@ -74,6 +77,9 @@ namespace Code.Game.Features.Movement.Systems
             var totalSize = sizeof(int) + sizeof(float) * 10;
             using var builder = new NetworkMessageBuilder(totalSize);
             var writer = builder.Write(tick).Write(currentDir).Write(currentPos).Write(lastDir).Write(lastPos).Build();
+
+            if (NetworkManager.Singleton == null)
+                return;
 
             NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(
             RequestTypes.MovementHistory.ToString(),

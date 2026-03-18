@@ -13,6 +13,7 @@ namespace Code.Game.Features.Network
     [Network] public class TimeComponent : IComponent { public float Value; }
     [Network][Game] public class HistoryBufferSize : IComponent { public int Value; }
     [Network][Game] public class MovementHistory : IComponent { public MovementHistoryData[] Value; }
+    [Game] public class MovementRollback : IComponent { }
   
     public enum RequestTypes
     {

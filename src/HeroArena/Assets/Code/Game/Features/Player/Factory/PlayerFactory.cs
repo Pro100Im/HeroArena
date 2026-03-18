@@ -21,7 +21,8 @@ namespace Code.Game.Features.Player.Factory
             entity.AddDirection(Vector2.zero);
             entity.AddLookAtPoint(Vector2.zero);
             entity.AddSpeed(1f);
-            entity.AddMaxSpeed(3f);
+            entity.AddMaxRunSpeed(4f);
+            entity.AddMaxWalkSpeed(2f);
             entity.AddCurrentSpeed(0f);
             entity.AddViewPath("Game/Player/Player");
             entity.isWaitingToSpawn = true;

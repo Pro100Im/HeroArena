@@ -16,7 +16,7 @@ namespace Code.Game.Features.Player.Systems
                 GameMatcher.ClientId,
                 GameMatcher.PlayerAnimator,
                 GameMatcher.CurrentSpeed,
-                GameMatcher.MaxSpeed));
+                GameMatcher.MaxRunSpeed));
         }
 
         public void Execute()
@@ -26,9 +26,11 @@ namespace Code.Game.Features.Player.Systems
                 if (player.clientId.Value != NetworkManager.Singleton.LocalClientId)
                     continue;
 
-                var normalizedSpeed = Mathf.Clamp01(player.currentSpeed.Value / player.maxSpeed.Value);
+                var dir = player.direction.Value * (player.currentSpeed.Value / player.maxRunSpeed.Value);
 
-                player.playerAnimator.Value.SetMoveParameters(normalizedSpeed, 0);
+                var normalizedSpeed = dir.normalized;
+
+                player.playerAnimator.Value.SetMoveParameters(normalizedSpeed.x, normalizedSpeed.z);
             }
         }
     }

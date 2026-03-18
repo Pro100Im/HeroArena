@@ -16,7 +16,8 @@ namespace Code.Game.Features.Player.Systems
                 .AllOf(
                 GameMatcher.Player,
                 GameMatcher.Speed,
-                GameMatcher.MaxSpeed,
+                GameMatcher.MaxRunSpeed,
+                GameMatcher.MaxWalkSpeed,
                 GameMatcher.CurrentSpeed));
         }
 
@@ -24,14 +25,14 @@ namespace Code.Game.Features.Player.Systems
         {
             foreach (var player in _players)
             {
-                if(player.isMoving && player.currentSpeed.Value < player.maxSpeed.Value)
+                if (player.isMoving && player.currentSpeed.Value < player.maxWalkSpeed.Value)
                 {
                     player.currentSpeed.Value += player.speed.Value * _timeService.DeltaTime;
 
-                    if(player.currentSpeed.Value > player.maxSpeed.Value)
-                        player.currentSpeed.Value = player.maxSpeed.Value;
+                    if (player.currentSpeed.Value > player.maxWalkSpeed.Value)
+                        player.currentSpeed.Value = player.maxWalkSpeed.Value;
                 }
-                else if(player.currentSpeed.Value > 0)
+                else if (player.currentSpeed.Value > 0)
                 {
                     player.currentSpeed.Value -= player.speed.Value * _timeService.DeltaTime * 2;
 

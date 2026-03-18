@@ -53,7 +53,9 @@ namespace Code.Game.Features.Movement.Systems
 
                         var correctPos = mover.movementHistory.Value[(activateTick - 1) % mover.historyBufferSize.Value].Position;
 
-                        while(activateTick <= network.currentTick.Value)
+                        mover.isMovementRollback = activateTick <= network.currentTick.Value;
+
+                        while (activateTick <= network.currentTick.Value)
                         {
                             var moveDir = mover.movementHistory.Value[(activateTick - 1) % mover.historyBufferSize.Value].Direction;
 
@@ -67,6 +69,7 @@ namespace Code.Game.Features.Movement.Systems
                             activateTick++;
                         }
 
+                        mover.isMovementRollback = false;
                         mover.transform.Value.position = correctPos;
                     }
                 }

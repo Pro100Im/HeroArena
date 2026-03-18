@@ -42,11 +42,11 @@ namespace Code.Game.Features.Movement.Systems
 
                     var startPos = mover.transform.Value.position;
 
-                    mover.transform.Value.position = lastPos;
-                    mover.characterController.Value.SimpleMove(lastDir * mover.currentSpeed.Value);
+                    //mover.transform.Value.position = lastPos;
+                    //mover.characterController.Value.SimpleMove(lastDir * mover.currentSpeed.Value);
 
                     var correctPos = mover.transform.Value.position;
-                    mover.transform.Value.position = startPos;
+                    //mover.transform.Value.position = startPos;
 
                     if (Vector3.Distance(correctPos, currentPos) > 0.5f)
                     {
