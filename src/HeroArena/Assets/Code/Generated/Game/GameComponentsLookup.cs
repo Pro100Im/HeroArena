@@ -30,19 +30,16 @@ public static class GameComponentsLookup {
     public const int RotationAlignedAlongTarget = 19;
     public const int Speed = 20;
     public const int ClientId = 21;
-    public const int HistoryBufferSize = 22;
-    public const int MovementHistory = 23;
-    public const int MovementRollback = 24;
-    public const int ObjectId = 25;
-    public const int PlayerAnimator = 26;
-    public const int Player = 27;
-    public const int ForPlayer = 28;
-    public const int FreePoint = 29;
-    public const int SpawnPosition = 30;
-    public const int SpawnRequsted = 31;
-    public const int WaitingToSpawn = 32;
+    public const int ObjectId = 22;
+    public const int PlayerAnimator = 23;
+    public const int Player = 24;
+    public const int ForPlayer = 25;
+    public const int FreePoint = 26;
+    public const int SpawnPosition = 27;
+    public const int SpawnRequsted = 28;
+    public const int WaitingToSpawn = 29;
 
-    public const int TotalComponents = 33;
+    public const int TotalComponents = 30;
 
     public static readonly string[] componentNames = {
         "Active",
@@ -67,9 +64,6 @@ public static class GameComponentsLookup {
         "RotationAlignedAlongTarget",
         "Speed",
         "ClientId",
-        "HistoryBufferSize",
-        "MovementHistory",
-        "MovementRollback",
         "ObjectId",
         "PlayerAnimator",
         "Player",
@@ -103,9 +97,6 @@ public static class GameComponentsLookup {
         typeof(Code.Game.Features.Movement.RotationAlignedAlongTarget),
         typeof(Code.Game.Features.Movement.Speed),
         typeof(Code.Game.Features.Network.ClientId),
-        typeof(Code.Game.Features.Network.HistoryBufferSize),
-        typeof(Code.Game.Features.Network.MovementHistory),
-        typeof(Code.Game.Features.Network.MovementRollback),
         typeof(Code.Game.Features.Network.ObjectId),
         typeof(Code.Game.Features.Player.PlayerAnimatorComponent),
         typeof(Code.Game.Features.Player.PlayerComponent),

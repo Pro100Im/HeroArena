@@ -9,38 +9,20 @@
 public static class NetworkComponentsLookup {
 
     public const int ClientId = 0;
-    public const int CurrentTick = 1;
-    public const int HistoryBufferSize = 2;
-    public const int LocalPlayer = 3;
-    public const int MovementHistory = 4;
-    public const int ObjectId = 5;
-    public const int TickRate = 6;
-    public const int TickTime = 7;
-    public const int Time = 8;
+    public const int LocalPlayer = 1;
+    public const int ObjectId = 2;
 
-    public const int TotalComponents = 9;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
         "ClientId",
-        "CurrentTick",
-        "HistoryBufferSize",
         "LocalPlayer",
-        "MovementHistory",
-        "ObjectId",
-        "TickRate",
-        "TickTime",
-        "Time"
+        "ObjectId"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Game.Features.Network.ClientId),
-        typeof(Code.Game.Features.Network.CurrentTick),
-        typeof(Code.Game.Features.Network.HistoryBufferSize),
         typeof(Code.Game.Features.Network.LocalPlayer),
-        typeof(Code.Game.Features.Network.MovementHistory),
-        typeof(Code.Game.Features.Network.ObjectId),
-        typeof(Code.Game.Features.Network.TickRate),
-        typeof(Code.Game.Features.Network.TickTime),
-        typeof(Code.Game.Features.Network.TimeComponent)
+        typeof(Code.Game.Features.Network.ObjectId)
     };
 }

@@ -16,8 +16,6 @@ namespace Code.Game.Features.Player
             if(NetworkManager.Singleton.IsClient)
             {
                 Add(systemFactory.Create<PlayerCameraInitSystem>());
-                Add(systemFactory.Create<PlayerDiractionalByInputSystem>());
-                Add(systemFactory.Create<PlayerSpeedSetupSystem>());
                 Add(systemFactory.Create<PlayerAnimatorSystem>());
             }
         }

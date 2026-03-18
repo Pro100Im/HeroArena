@@ -8,8 +8,6 @@ namespace Code.Game.Features.Network
         public NetworkFeature(ISystemFactory systems)
         {
             Add(systems.Create<ObjectIdReceiveSystem>());
-            Add(systems.Create<NetworkTickInitSystem>());
-            Add(systems.Create<NetworkTimeSystem>());
         }
     }
 }

@@ -1,4 +1,3 @@
-using Code.Game.Features.Network.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Game.Features.Network
@@ -7,7 +6,7 @@ namespace Code.Game.Features.Network
     {
         public NetworkFixedFeature(ISystemFactory systems)
         {
-            Add(systems.Create<NetworkTickSystem>());
+            
         }
     }
 }
